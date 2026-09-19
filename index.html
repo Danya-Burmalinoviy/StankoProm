@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMD-установщик — для хобби и радиолюбителей</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --primary-light: #4A9BF5;
+            --accent: #00BCD4;
+            --accent-soft: #E0F7FA;
+            --bg: #F5F9FF;
+            --white: #ffffff;
+            --card-bg: #ffffff;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --heading: #0F1F3D;
+            --border: #DCE7F5;
+            --shadow: 0 6px 22px rgba(26, 115, 232, 0.10);
+            --shadow-hover: 0 14px 34px rgba(26, 115, 232, 0.18);
+            --radius: 14px;
+            --gradient: linear-gradient(135deg, #1a73e8 0%, #4A9BF5 100%);
+            --gradient-accent: linear-gradient(135deg, #00BCD4 0%, #1a73e8 100%);
+            --hero-bg: linear-gradient(135deg, #EAF2FE 0%, #F5F9FF 60%, #E0F7FA 100%);
+            --gallery-bg: linear-gradient(135deg, #EAF2FE 0%, #E0F7FA 100%);
+            --gallery-text: #1a73e8;
+            --header-bg: #ffffff;
+            --footer-bg: #EAF2FE;
+            --footer-text: #475569;
+            --footer-text-strong: #0F1F3D;
+            --footer-border: #DCE7F5;
+            --footer-accent: #1a73e8;
+
+            --video-poster-bg: linear-gradient(135deg, #1a73e8 0%, #4A9BF5 50%, #00BCD4 100%);
+            --video-poster-dots: rgba(255,255,255,0.18);
+            --video-play-bg: #ffffff;
+            --video-play-color: #1a73e8;
+            --video-play-shadow: 0 8px 30px rgba(26, 115, 232, 0.5);
+
+            --viewer-bg: radial-gradient(circle at 50% 45%, #DBEAFE 0%, #BFDBFE 55%, #93C5FD 100%);
+            --viewer-hint-bg: rgba(15, 31, 61, 0.65);
+            --viewer-btn-bg: rgba(15, 31, 61, 0.35);
+            --viewer-btn-border: rgba(255,255,255,0.4);
+
+            --sch-bg: #EAF2FE;
+            --sch-block: #FFFFFF;
+            --sch-border: #93C5FD;
+            --sch-text: #0F1F3D;
+            --sch-text-light: #475569;
+            --sch-line: #1a73e8;
+            --sch-bus: #4A9BF5;
+
+            --h-bg-1: #EAF2FE;
+            --h-bg-2: #F5F9FF;
+            --h-dots: #93C5FD;
+            --h-frame: #CBD5E1;
+            --h-frame-stroke: #94A3B8;
+            --h-carriage: #FFFFFF;
+            --h-carriage-stroke: #1a73e8;
+            --h-strip: #E2E8F0;
+            --h-nozzle: #94A3B8;
+            --h-nozzle-tip: #1a73e8;
+            --h-board-1: #DBEAFE;
+            --h-board-2: #BFDBFE;
+            --h-board-stroke: #93C5FD;
+            --h-board-accent: #1a73e8;
+            --h-pad: #94A3B8;
+            --h-comp-body: #FFFFFF;
+            --h-comp-stroke: #1a73e8;
+        }
+
+        [data-theme="dark"] {
+            --primary: #4FACFE;
+            --primary-dark: #00F2FE;
+            --primary-light: #7DD3FC;
+            --accent: #00F2FE;
+            --accent-soft: #0F2937;
+            --bg: #0F172A;
+            --white: #1E293B;
+            --card-bg: #1E293B;
+            --text: #E2E8F0;
+            --text-light: #94A3B8;
+            --heading: #F1F5F9;
+            --border: #334155;
+            --shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+            --shadow-hover: 0 14px 34px rgba(0, 242, 254, 0.15);
+            --gradient: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
+            --gradient-accent: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+            --hero-bg: linear-gradient(135deg, #0F172A 0%, #1E1B4B 60%, #0F2937 100%);
+            --gallery-bg: linear-gradient(135deg, #1E293B 0%, #0F2937 100%);
+            --gallery-text: #00F2FE;
+            --header-bg: #0F172A;
+            --footer-bg: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+            --footer-text: #94A3B8;
+            --footer-text-strong: #E2E8F0;
+            --footer-border: #1E293B;
+            --footer-accent: #00F2FE;
+
+            --video-poster-bg: linear-gradient(135deg, #020617 0%, #1E3A8A 50%, #0F2937 100%);
+            --video-poster-dots: rgba(0, 242, 254, 0.18);
+            --video-play-bg: #00F2FE;
+            --video-play-color: #0F172A;
+            --video-play-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
+
+            --viewer-bg: radial-gradient(circle at 50% 45%, #1E293B 0%, #0F172A 55%, #020617 100%);
+            --viewer-hint-bg: rgba(0, 242, 254, 0.15);
+            --viewer-btn-bg: rgba(0, 242, 254, 0.15);
+            --viewer-btn-border: rgba(0, 242, 254, 0.35);
+
+            --sch-bg: #0B1424;
+            --sch-block: #1E293B;
+            --sch-border: #4FACFE;
+            --sch-text: #E2E8F0;
+            --sch-text-light: #94A3B8;
+            --sch-line: #00F2FE;
+            --sch-bus: #4FACFE;
+
+            --h-bg-1: #0F172A;
+            --h-bg-2: #1E1B4B;
+            --h-dots: #1E3A8A;
+            --h-frame: #1E293B;
+            --h-frame-stroke: #334155;
+            --h-carriage: #1E293B;
+            --h-carriage-stroke: #4FACFE;
+            --h-strip: #334155;
+            --h-nozzle: #334155;
+            --h-nozzle-tip: #4FACFE;
+            --h-board-1: #0F2937;
+            --h-board-2: #0B1E2B;
+            --h-board-stroke: #334155;
+            --h-board-accent: #4FACFE;
+            --h-pad: #334155;
+            --h-comp-body: #1E293B;
+            --h-comp-stroke: #4FACFE;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ── Шапка ── */
+        .header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 14px rgba(26, 115, 232, 0.06);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .header-inner {
+            max-width: 1150px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .logo { text-decoration: none; display: flex; align-items: center; }
+        .header-logo-svg { height: 85px; width: auto; display: block; transition: filter 0.3s; }
+        [data-theme="dark"] .header-logo-svg { filter: drop-shadow(0 0 14px rgba(0, 242, 254, 0.18)); }
+        .logo-text-main { fill: url(#textGrad); }
+        .logo-text-sub  { fill: #3B82F6; }
+        [data-theme="dark"] .logo-text-main { fill: #E2E8F0; }
+        [data-theme="dark"] .logo-text-sub  { fill: #00F2FE; }
+
+        .nav { display: flex; align-items: center; flex-wrap: wrap; }
+        .nav a {
+            text-decoration: none; color: var(--text);
+            margin-left: 28px; font-weight: 600;
+            transition: color 0.2s; font-size: 0.95rem; position: relative;
+        }
+        .nav a:hover { color: var(--primary); }
+        .nav a::after {
+            content: ''; position: absolute; left: 0; bottom: -6px;
+            width: 0; height: 2px; background: var(--accent);
+            transition: width 0.25s;
+        }
+        .nav a:hover::after { width: 100%; }
+
+        .theme-toggle {
+            margin-left: 28px; width: 44px; height: 44px;
+            border-radius: 50%; border: 2px solid var(--border);
+            background: var(--card-bg); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; transition: all 0.25s ease;
+            box-shadow: var(--shadow); padding: 0; line-height: 1;
+        }
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            transform: rotate(15deg) scale(1.08);
+            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
+        }
+        .theme-toggle .icon { display: flex; align-items: center; justify-content: center; }
+
+        /* ── Секции ── */
+        .section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+        .section-title {
+            font-size: 2rem; font-weight: 800; margin-bottom: 12px;
+            color: var(--heading); position: relative; display: inline-block;
+            transition: color 0.3s;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--gradient-accent); border-radius: 2px; margin-top: 8px;
+        }
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--text-light);
+            margin-bottom: 36px; max-width: 650px; margin-top: 16px;
+            transition: color 0.3s;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--hero-bg);
+            padding: 80px 24px; position: relative; overflow: hidden;
+            transition: background 0.3s;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0,188,212,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto; display: flex;
+            align-items: center; gap: 50px; flex-wrap: wrap;
+            position: relative; z-index: 1;
+        }
+        .hero-text { flex: 1 1 400px; }
+        .hero-text h1 {
+            font-size: 2.5rem; font-weight: 800; line-height: 1.2;
+            margin-bottom: 18px; color: var(--heading); transition: color 0.3s;
+        }
+        .hero-text h1 span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-text p {
+            font-size: 1.1rem; color: var(--text-light);
+            margin-bottom: 28px; transition: color 0.3s;
+        }
+        .btn {
+            display: inline-block; padding: 14px 34px;
+            background: var(--gradient); color: #fff;
+            border-radius: 30px; text-decoration: none;
+            font-weight: 700; font-size: 1rem;
+            transition: transform 0.15s, box-shadow 0.2s;
+            border: none; cursor: pointer;
+            box-shadow: 0 6px 18px rgba(26, 115, 232, 0.35);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(26, 115, 232, 0.45); }
+        .btn-outline {
+            background: transparent; border: 2px solid var(--primary);
+            color: var(--primary); margin-left: 12px; box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary); color: #fff;
+            box-shadow: 0 6px 18px rgba(26, 115, 232, 0.35);
+        }
+        .hero-img { flex: 1 1 350px; text-align: center; }
+
+        .hero-img .placeholder {
+            width: 100%; max-width: 420px; height: 300px;
+            border-radius: var(--radius); margin: 0 auto;
+            box-shadow: var(--shadow); overflow: hidden;
+            display: block;
+            transition: box-shadow 0.3s, transform 0.25s;
+        }
+        .hero-img .placeholder:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .hero-img .placeholder svg { width: 100%; height: 100%; display: block; }
+        [data-theme="dark"] .hero-img .placeholder {
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 242, 254, 0.15);
+        }
+
+        .h-bg-1   { stop-color: var(--h-bg-1); transition: stop-color 0.3s; }
+        .h-bg-2   { stop-color: var(--h-bg-2); transition: stop-color 0.3s; }
+        .h-dot    { fill: var(--h-dots); opacity: 0.6; transition: fill 0.3s; }
+        .h-frame  { fill: var(--h-frame); stroke: var(--h-frame-stroke); stroke-width: 1; transition: fill 0.3s, stroke 0.3s; }
+        .h-carriage { fill: var(--h-carriage); stroke: var(--h-carriage-stroke); stroke-width: 2; transition: fill 0.3s, stroke 0.3s; }
+        .h-strip  { fill: var(--h-strip); transition: fill 0.3s; }
+        .h-nozzle { fill: var(--h-nozzle); transition: fill 0.3s; }
+        .h-tip    { fill: var(--h-nozzle-tip); transition: fill 0.3s; }
+        .h-board-1 { stop-color: var(--h-board-1); transition: stop-color 0.3s; }
+        .h-board-2 { stop-color: var(--h-board-2); transition: stop-color 0.3s; }
+        .h-board-stroke { stroke: var(--h-board-stroke); transition: stroke 0.3s; }
+        .h-board-accent { stroke: var(--h-board-accent); transition: stroke 0.3s; }
+        .h-pad    { fill: var(--h-pad); transition: fill 0.3s; }
+        .h-comp   { fill: var(--h-comp-body); stroke: var(--h-comp-stroke); stroke-width: 1; transition: fill 0.3s, stroke 0.3s; }
+        .h-target { stroke: var(--h-board-accent); transition: stroke 0.3s; }
+        .h-target-fill { fill: var(--h-board-accent); transition: fill 0.3s; }
+        .h-aim    { stroke: var(--h-board-accent); transition: stroke 0.3s; }
+
+        /* ═══ КАРТОЧКИ ═══ */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px 26px 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card:hover::before { transform: scaleX(1); }
+        .card-number {
+            position: absolute;
+            top: 18px; right: 22px;
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--primary);
+            opacity: 0.08;
+            letter-spacing: -2px;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            font-variant-numeric: tabular-nums;
+        }
+        .card:hover .card-number { opacity: 0.18; transform: translateY(-2px); }
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 14px; right: 18px;
+            width: 40px; height: 40px;
+            background-image: radial-gradient(circle, var(--primary) 1px, transparent 1.5px);
+            background-size: 8px 8px;
+            opacity: 0.15;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .card:hover::after { opacity: 0.35; }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .card-icon {
+            width: 64px; height: 64px;
+            border-radius: 18px;
+            background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.35);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+            position: relative; overflow: hidden;
+        }
+        [data-theme="dark"] .card-icon { box-shadow: 0 8px 20px rgba(0, 242, 254, 0.25); }
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .card-icon svg {
+            width: 32px; height: 32px;
+            stroke: #fff; stroke-width: 2;
+            fill: none;
+            stroke-linecap: round; stroke-linejoin: round;
+            position: relative; z-index: 1;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 12px 28px rgba(26, 115, 232, 0.5);
+        }
+        [data-theme="dark"] .card:hover .card-icon {
+            box-shadow: 0 12px 28px rgba(0, 242, 254, 0.4);
+        }
+        .card h3 {
+            font-size: 1.2rem; font-weight: 800;
+            color: var(--heading);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+            transition: color 0.3s;
+            position: relative; z-index: 1;
+        }
+        .card h3::after {
+            content: ''; display: block;
+            width: 32px; height: 3px;
+            margin-top: 8px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            transition: width 0.35s;
+        }
+        .card:hover h3::after { width: 56px; }
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: color 0.3s;
+            position: relative; z-index: 1;
+        }
+
+        /* ═══ ТАБЫ ═══ */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+        .tab-btn {
+            padding: 12px 22px;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            position: relative;
+            border-radius: 10px 10px 0 0;
+            transition: color 0.25s, background 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn:hover { color: var(--primary); background: var(--accent-soft); }
+        .tab-btn.active { color: var(--primary); background: var(--accent-soft); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 3px 3px 0 0;
+        }
+        .tab-btn svg {
+            width: 16px; height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+        .tab-count {
+            font-size: 0.72rem;
+            background: var(--border);
+            color: var(--text-light);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 800;
+            min-width: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+        .tab-btn.active .tab-count { background: var(--gradient); color: #fff; }
+        [data-theme="dark"] .tab-btn.active .tab-count { color: #0F172A; }
+
+        .tab-panel { display: none; }
+        .tab-panel.active {
+            display: block;
+            animation: fadeUp 0.4s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══ ФОТО ═══ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 22px;
+        }
+        .gallery-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .gallery-preview {
+            aspect-ratio: 4 / 3;
+            background: var(--gallery-bg);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            transition: background 0.3s;
+        }
+        .gallery-preview::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle, var(--primary) 1px, transparent 1.5px);
+            background-size: 18px 18px;
+            opacity: 0.10;
+            transition: opacity 0.3s;
+        }
+        .gallery-card:hover .gallery-preview::before { opacity: 0.18; }
+        .gallery-preview svg {
+            width: 64px; height: 64px;
+            stroke: var(--gallery-text);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round; stroke-linejoin: round;
+            position: relative; z-index: 1;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .gallery-card:hover .gallery-preview svg { transform: scale(1.15) rotate(-5deg); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(26,115,232,0.9) 0%, rgba(0,188,212,0.9) 100%);
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+        }
+        .gallery-card:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        .gallery-card:hover .gallery-overlay::after { transform: translateX(6px); }
+        .gallery-caption {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center; justify-content: space-between;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--heading);
+            transition: color 0.3s;
+        }
+        .gallery-caption small {
+            display: block;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 2px;
+        }
+        .gallery-arrow {
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        .gallery-card:hover .gallery-arrow { transform: translateX(4px); }
+
+        /* ═══ ВИДЕО — сетка карточек ═══ */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 22px;
+        }
+        .video-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+            position: relative;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .video-card-preview {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--video-poster-bg);
+            overflow: hidden;
+        }
+        .video-card-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, var(--video-poster-dots) 1px, transparent 1.5px);
+            background-size: 22px 22px;
+            z-index: 1;
+        }
+        .video-card-preview::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+        .video-card-preview .video-poster-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--video-play-bg);
+            color: var(--video-play-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--video-play-shadow);
+            z-index: 3;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+        .video-card:hover .video-play-btn {
+            transform: translate(-50%, -50%) scale(1.12);
+        }
+        .video-play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            margin-left: 4px;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: var(--video-play-shadow), 0 0 0 0 rgba(255,255,255,0.4); }
+            50%      { box-shadow: var(--video-play-shadow), 0 0 0 18px rgba(255,255,255,0); }
+        }
+        .video-duration {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background: rgba(0,0,0,0.65);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 3;
+            font-variant-numeric: tabular-nums;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .video-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            z-index: 3;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .video-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #FF4D4D;
+            box-shadow: 0 0 8px #FF4D4D;
+            animation: blink 1.6s ease-in-out infinite;
+        }
+        .video-card-info {
+            padding: 18px 20px 20px;
+            transition: color 0.3s;
+        }
+        .video-card-info h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--heading);
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+            transition: color 0.3s;
+        }
+        .video-card-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            transition: color 0.3s;
+        }
+        .video-card-info .video-card-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .video-card-info .video-card-meta svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ═══ СТРУКТУРНАЯ СХЕМА ═══ */
+        .scheme-wrapper {
+            background: var(--sch-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            overflow-x: auto;
+        }
+        .scheme-wrapper:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .scheme-svg {
+            display: block;
+            width: 100%;
+            min-width: 700px;
+            height: auto;
+        }
+        .sch-bg-rect    { fill: var(--sch-bg); transition: fill 0.3s; }
+        .sch-block-rect { fill: var(--sch-block); stroke: var(--sch-border); stroke-width: 1.6; transition: fill 0.3s, stroke 0.3s; }
+        .sch-block-rect-accent { fill: var(--sch-block); stroke: var(--sch-line); stroke-width: 2; transition: fill 0.3s, stroke 0.3s; }
+        .sch-line       { stroke: var(--sch-line); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
+        .sch-line-bus   { stroke: var(--sch-bus); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
+        .sch-arrow-head { fill: var(--sch-line); transition: fill 0.3s; }
+        .sch-text-main  { fill: var(--sch-text); font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 600; font-size: 12.5px; transition: fill 0.3s; }
+        .sch-text-title { fill: var(--sch-text); font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 800; font-size: 14px; transition: fill 0.3s; }
+
+        /* ═══ 3D VIEWER ═══ */
+        .viewer3d {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            background: var(--viewer-bg);
+            cursor: grab;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .viewer3d:active { cursor: grabbing; }
+        .viewer3d:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .viewer3d-canvas {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+        }
+        .viewer3d-canvas canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .viewer3d-canvas .fallback-svg {
+            width: 100%; height: 100%;
+            display: block;
+        }
+        .viewer3d-badge {
+            position: absolute;
+            top: 16px; left: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            z-index: 5;
+            display: flex; align-items: center; gap: 7px;
+        }
+        .viewer3d-badge::before {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #00F2FE;
+            box-shadow: 0 0 10px #00F2FE;
+            animation: blink 1.8s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .viewer3d-controls {
+            position: absolute;
+            top: 16px; right: 16px;
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+        .viewer3d-btn {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: var(--viewer-btn-bg);
+            border: 1px solid var(--viewer-btn-border);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            padding: 0;
+            line-height: 1;
+        }
+        .viewer3d-btn:hover {
+            background: rgba(0, 242, 254, 0.35);
+            transform: scale(1.05);
+        }
+        .viewer3d-btn.active {
+            background: var(--gradient);
+            border-color: transparent;
+        }
+        .viewer3d-btn svg {
+            width: 18px; height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .viewer3d-hint {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--viewer-hint-bg);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            pointer-events: none;
+            letter-spacing: 0.3px;
+            z-index: 5;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ═══ ЧЕРТЕЖИ ═══ */
+        .drawings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 22px;
+        }
+        .drawing-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+            position: relative;
+        }
+        .drawing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .drawing-preview {
+            aspect-ratio: 4 / 3;
+            background: var(--gallery-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+        .drawing-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, var(--primary) 1px, transparent 1.5px);
+            background-size: 18px 18px;
+            opacity: 0.10;
+            transition: opacity 0.3s;
+        }
+        .drawing-card:hover .drawing-preview::before {
+            opacity: 0.18;
+        }
+        .drawing-preview > svg {
+            width: 72px;
+            height: 72px;
+            stroke: var(--gallery-text);
+            stroke-width: 1.3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .drawing-card:hover .drawing-preview > svg {
+            transform: scale(1.12) rotate(-4deg);
+        }
+        .drawing-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--gradient);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        .drawing-hover {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26,115,232,0.9) 0%, rgba(0,188,212,0.9) 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 3;
+        }
+        .drawing-hover::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        .drawing-card:hover .drawing-hover {
+            opacity: 1;
+        }
+        .drawing-card:hover .drawing-hover::after {
+            transform: translateX(6px);
+        }
+        .drawing-info {
+            padding: 16px 20px;
+            transition: color 0.3s;
+        }
+        .drawing-info h4 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--heading);
+            margin-bottom: 4px;
+            letter-spacing: -0.2px;
+            transition: color 0.3s;
+        }
+        .drawing-info small {
+            font-size: 0.76rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        /* ═══ МОДАЛЬНОЕ ОКНО PDF ═══ */
+        .pdf-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .pdf-modal.open {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .pdf-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+        }
+        .pdf-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            height: 90vh;
+            max-height: 900px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .pdf-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--accent-soft);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .pdf-modal-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--heading);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.3s;
+        }
+        .pdf-modal-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .pdf-modal-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            padding: 0;
+        }
+        .pdf-modal-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .pdf-modal-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .pdf-modal-close:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
+        .pdf-modal-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: #fff;
+        }
+
+        /* ═══ МОДАЛЬНОЕ ОКНО ВИДЕО ═══ */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .video-modal.open {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        .video-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+        }
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        .video-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--accent-soft);
+            border-bottom: 1px solid var(--border);
+        }
+        .video-modal-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--heading);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .video-modal-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .video-modal-btn:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .video-modal-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .video-modal-body {
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        .video-modal-body video,
+        .video-modal-body iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ── Фонд ── */
+        .fund-block {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius); padding: 36px 32px;
+            display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
+            box-shadow: var(--shadow); margin-top: 20px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .fund-logo-svg {
+            width: 100%; max-width: 280px; height: auto;
+            flex-shrink: 0; transition: transform 0.2s;
+        }
+        .fund-logo-svg:hover { transform: scale(1.02); }
+        .fund-text {
+            font-size: 0.9rem; color: var(--text-light);
+            line-height: 1.6; flex: 1 1 300px; transition: color 0.3s;
+        }
+
+        /* ── КОНТАКТЫ ── */
+        .contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex; align-items: flex-start;
+            gap: 24px;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background-color 0.3s;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .contact-card:hover::before { opacity: 1; }
+        .contact-icon {
+            width: 76px; height: 76px;
+            border-radius: 20px;
+            background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 22px rgba(26, 115, 232, 0.4);
+            transition: transform 0.25s;
+        }
+        [data-theme="dark"] .contact-icon { box-shadow: 0 8px 22px rgba(0, 242, 254, 0.3); }
+        .contact-card:hover .contact-icon { transform: scale(1.08) rotate(-3deg); }
+        .contact-body { flex: 1; min-width: 0; }
+        .contact-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--heading);
+            margin-bottom: 18px;
+            letter-spacing: -0.3px;
+            transition: color 0.3s;
+        }
+        .contact-card .contact-line {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+        .contact-card .contact-line strong {
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .contact-card .contact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+            word-break: break-word;
+        }
+        .contact-card a:hover { color: var(--accent); }
+        .contact-card .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 16px 0;
+            transition: background 0.3s;
+        }
+
+        /* ── Подвал ── */
+        .footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid var(--footer-border);
+            position: relative;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 0 0 3px 3px;
+        }
+        .footer p { margin: 6px 0; transition: color 0.3s; }
+        .footer .footer-main {
+            color: var(--footer-text-strong);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        .footer .footer-note { font-size: 0.82rem; opacity: 0.85; }
+        .footer .footer-highlight { color: var(--footer-accent); font-weight: 600; cursor: default; }
+
+        /* ── Адаптив ── */
+        @media (max-width: 768px) {
+            .hero-inner { flex-direction: column-reverse; text-align: center; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .btn-outline { margin-left: 0; margin-top: 10px; }
+            .nav a { margin-left: 14px; font-size: 0.85rem; }
+            .header-logo-svg { height: 60px; }
+            .theme-toggle { margin-left: 14px; width: 38px; height: 38px; font-size: 1rem; }
+            .fund-block { flex-direction: column; text-align: center; padding: 28px 20px; }
+            .fund-logo-svg { max-width: 100%; }
+
+            .contact-card {
+                padding: 28px 24px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 18px;
+            }
+            .contact-icon { width: 64px; height: 64px; font-size: 2rem; }
+            .contact-card h3 { font-size: 1.25rem; }
+            .contact-card a { font-size: 1rem; }
+
+            .footer { padding: 32px 20px; }
+            .footer .footer-main { font-size: 0.88rem; }
+
+            .card-number { font-size: 1.8rem; top: 14px; right: 18px; }
+            .card-icon { width: 56px; height: 56px; border-radius: 16px; }
+            .card-icon svg { width: 28px; height: 28px; }
+
+            .tab-btn { padding: 10px 14px; font-size: 0.82rem; gap: 6px; }
+            .tab-btn svg { width: 14px; height: 14px; }
+            .tab-count { font-size: 0.68rem; padding: 2px 6px; }
+
+            .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+            .videos-grid { grid-template-columns: 1fr; gap: 16px; }
+
+            .video-play-btn { width: 60px; height: 60px; }
+            .video-play-btn svg { width: 22px; height: 22px; }
+
+            .viewer3d { aspect-ratio: 4 / 3; }
+            .viewer3d-btn { width: 34px; height: 34px; }
+            .viewer3d-hint { font-size: 0.7rem; padding: 6px 12px; gap: 6px; }
+
+            .scheme-wrapper { padding: 12px; }
+
+            .drawings-grid { grid-template-columns: 1fr; gap: 16px; }
+            .pdf-modal { padding: 12px; }
+            .pdf-modal-content { height: 92vh; max-height: none; }
+            .pdf-modal-header { padding: 10px 14px; }
+            .pdf-modal-title { font-size: 0.9rem; }
+            .pdf-modal-btn { width: 34px; height: 34px; }
+
+            .video-modal { padding: 12px; }
+            .video-modal-header { padding: 10px 14px; }
+            .video-modal-title { font-size: 0.9rem; }
+            .video-modal-btn { width: 34px; height: 34px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ ШАПКА ═══════════ -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <svg class="header-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 140">
+                  <defs>
+                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#0F172A" />
+                      <stop offset="100%" stop-color="#1E1B4B" />
+                    </linearGradient>
+                    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00F2FE" />
+                      <stop offset="100%" stop-color="#4FACFE" />
+                    </linearGradient>
+                    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1E293B" />
+                      <stop offset="100%" stop-color="#0F172A" />
+                    </linearGradient>
+                    <linearGradient id="smdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00F2FE" />
+                      <stop offset="100%" stop-color="#4FACFE" />
+                    </linearGradient>
+                    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#0F172A" />
+                      <stop offset="100%" stop-color="#1E3A8A" />
+                    </linearGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+
+                  <rect x="20" y="20" width="100" height="100" rx="30" fill="url(#bgGrad)" filter="url(#glow)" />
+                  <rect x="22" y="22" width="96" height="96" rx="28" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+
+                  <g filter="url(#glow)">
+                    <path d="M 45 20 L 45 28 L 63 38" fill="none" stroke="url(#traceGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="45" cy="20" r="3" fill="#00F2FE" />
+                    <circle cx="45" cy="28" r="2" fill="#0F172A" stroke="#00F2FE" stroke-width="1.5" />
+                    <path d="M 20 73 L 28 73 L 38 63" fill="none" stroke="url(#traceGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="20" cy="73" r="3" fill="#00F2FE" />
+                    <circle cx="28" cy="73" r="2" fill="#0F172A" stroke="#00F2FE" stroke-width="1.5" />
+                    <path d="M 120 55 L 112 55 L 102 73" fill="none" stroke="url(#traceGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="120" cy="55" r="3" fill="#00F2FE" />
+                    <circle cx="112" cy="55" r="2" fill="#0F172A" stroke="#00F2FE" stroke-width="1.5" />
+                    <path d="M 85 120 L 85 112 L 63 102" fill="none" stroke="url(#traceGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="85" cy="120" r="3" fill="#00F2FE" />
+                    <circle cx="85" cy="112" r="2" fill="#0F172A" stroke="#00F2FE" stroke-width="1.5" />
+                  </g>
+
+                  <rect x="45" y="45" width="50" height="50" rx="6" fill="url(#chipGrad)" stroke="#38BDF8" stroke-width="2" />
+                  
+                  <g fill="#FBBF24">
+                    <rect x="50" y="38" width="6" height="7" rx="1" />
+                    <rect x="60" y="38" width="6" height="7" rx="1" />
+                    <rect x="70" y="38" width="6" height="7" rx="1" />
+                    <rect x="80" y="38" width="6" height="7" rx="1" />
+                    <rect x="50" y="95" width="6" height="7" rx="1" />
+                    <rect x="60" y="95" width="6" height="7" rx="1" />
+                    <rect x="70" y="95" width="6" height="7" rx="1" />
+                    <rect x="80" y="95" width="6" height="7" rx="1" />
+                    <rect x="38" y="50" width="7" height="6" rx="1" />
+                    <rect x="38" y="60" width="7" height="6" rx="1" />
+                    <rect x="38" y="70" width="7" height="6" rx="1" />
+                    <rect x="38" y="80" width="7" height="6" rx="1" />
+                    <rect x="95" y="50" width="7" height="6" rx="1" />
+                    <rect x="95" y="60" width="7" height="6" rx="1" />
+                    <rect x="95" y="70" width="7" height="6" rx="1" />
+                    <rect x="95" y="80" width="7" height="6" rx="1" />
+                  </g>
+
+                  <g filter="url(#textGlow)">
+                    <text x="70" y="76" font-family="'Inter', 'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="20" fill="url(#smdGrad)" text-anchor="middle" letter-spacing="-0.5">
+                      SMD
+                    </text>
+                    <line x1="52" y1="81" x2="88" y2="81" stroke="#00F2FE" stroke-width="2" opacity="0.9" />
+                    <circle cx="52" cy="81" r="1.5" fill="#00F2FE" />
+                    <circle cx="88" cy="81" r="1.5" fill="#00F2FE" />
+                  </g>
+
+                  <text class="logo-text-main" x="150" y="75" font-family="'Inter', 'Montserrat', 'Segoe UI', sans-serif" font-weight="900" font-size="40" letter-spacing="-0.5">
+                    Станкопром
+                  </text>
+                  
+                  <text class="logo-text-sub" x="152" y="100" font-family="'Inter', 'Montserrat', sans-serif" font-weight="700" font-size="14" letter-spacing="3">
+                    SMD-ОБОРУДОВАНИЕ
+                  </text>
+                </svg>
+            </a>
+            <nav class="nav">
+                <a href="#about">О проекте</a>
+                <a href="#specs">Характеристики</a>
+                <a href="#contacts">Контакты</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема">
+                    <span class="icon" id="themeIcon">☀️</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="about">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>SMD-установщик<br><span>для хобби и радиолюбителей</span></h1>
+                <p>Компактное настольное устройство для точной установки SMD-компонентов. Создано для домашних мастерских, мелкосерийной сборки и обучения.</p>
+                <div>
+                    <a href="#specs" class="btn">Характеристики</a>
+                    <a href="#contacts" class="btn btn-outline">Связаться</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <div class="placeholder" aria-label="Иллюстрация SMD-установщика">
+                    <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" class="h-bg-1" />
+                                <stop offset="100%" class="h-bg-2" />
+                            </linearGradient>
+                            <linearGradient id="heroAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00F2FE" />
+                                <stop offset="100%" stop-color="#4FACFE" />
+                            </linearGradient>
+                            <linearGradient id="heroBoard" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" class="h-board-1" />
+                                <stop offset="100%" class="h-board-2" />
+                            </linearGradient>
+                            <pattern id="heroDots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+                                <circle cx="2" cy="2" r="1" class="h-dot" />
+                            </pattern>
+                            <filter id="heroGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3.5" result="b" />
+                                <feComposite in="SourceGraphic" in2="b" operator="over" />
+                            </filter>
+                        </defs>
+
+                        <rect width="420" height="300" rx="20" fill="url(#heroBg)" />
+                        <rect width="420" height="300" rx="20" fill="url(#heroDots)" />
+
+                        <rect x="40" y="34" width="340" height="16" rx="8" class="h-frame" />
+                        <rect x="40" y="34" width="16" height="220" rx="8" class="h-frame" />
+                        <rect x="364" y="34" width="16" height="220" rx="8" class="h-frame" />
+
+                        <rect x="178" y="24" width="64" height="56" rx="10" class="h-carriage" />
+                        <rect x="186" y="32" width="48" height="8" rx="4" class="h-strip" />
+                        <circle cx="210" cy="56" r="5" fill="url(#heroAccent)" filter="url(#heroGlow)" />
+
+                        <rect x="205" y="80" width="10" height="60" rx="3" class="h-nozzle" />
+                        <rect x="203" y="138" width="14" height="10" rx="3" class="h-tip" />
+
+                        <rect x="198" y="152" width="24" height="14" rx="2" fill="#FBBF24" filter="url(#heroGlow)" />
+                        <rect x="202" y="155" width="4" height="3" rx="0.5" fill="#B45309" />
+                        <rect x="214" y="155" width="4" height="3" rx="0.5" fill="#B45309" />
+                        <rect x="202" y="162" width="4" height="3" rx="0.5" fill="#B45309" />
+                        <rect x="214" y="162" width="4" height="3" rx="0.5" fill="#B45309" />
+
+                        <line x1="210" y1="170" x2="210" y2="205" stroke-width="1" stroke-dasharray="3 4" opacity="0.6" class="h-aim" />
+                        <circle cx="210" cy="210" r="10" fill="none" stroke-width="1.5" opacity="0.75" class="h-target" />
+                        <circle cx="210" cy="210" r="3" opacity="0.9" class="h-target-fill" />
+                        <rect x="198" y="203" width="24" height="14" rx="2" fill="none" stroke-width="1" stroke-dasharray="2 3" opacity="0.7" class="h-target" />
+
+                        <rect x="50" y="200" width="320" height="76" rx="6" fill="url(#heroBoard)" class="h-board-stroke" />
+                        <rect x="50" y="200" width="320" height="76" rx="6" fill="none" stroke-width="1" opacity="0.25" class="h-board-accent" />
+
+                        <path d="M 60 220 L 100 220 L 115 235 L 115 260" fill="none" stroke="url(#heroAccent)" stroke-width="1.5" opacity="0.7" />
+                        <path d="M 60 245 L 90 245 L 100 255" fill="none" stroke="url(#heroAccent)" stroke-width="1.5" opacity="0.7" />
+                        <path d="M 360 220 L 320 220 L 305 235 L 305 260" fill="none" stroke="url(#heroAccent)" stroke-width="1.5" opacity="0.7" />
+                        <path d="M 360 245 L 330 245 L 320 255" fill="none" stroke="url(#heroAccent)" stroke-width="1.5" opacity="0.7" />
+
+                        <g>
+                            <rect x="85" y="215" width="24" height="14" rx="2" class="h-comp" />
+                            <rect x="90" y="218" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="90" y="224" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="100" y="218" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="100" y="224" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                        </g>
+                        <g>
+                            <rect x="150" y="240" width="30" height="16" rx="2" class="h-comp" />
+                            <rect x="156" y="244" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="170" y="244" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="156" y="250" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="170" y="250" width="4" height="2" rx="0.5" fill="#FBBF24" />
+                        </g>
+                        <g>
+                            <rect x="310" y="220" width="20" height="12" rx="2" class="h-comp" />
+                            <rect x="315" y="223" width="3" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="315" y="227" width="3" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="322" y="223" width="3" height="2" rx="0.5" fill="#FBBF24" />
+                            <rect x="322" y="227" width="3" height="2" rx="0.5" fill="#FBBF24" />
+                        </g>
+
+                        <g class="h-pad">
+                            <rect x="240" y="215" width="10" height="6" rx="1" />
+                            <rect x="255" y="215" width="10" height="6" rx="1" />
+                            <rect x="240" y="245" width="10" height="6" rx="1" />
+                            <rect x="255" y="245" width="10" height="6" rx="1" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ ОПИСАНИЕ ПРОЕКТА ═══════════ -->
+    <section class="section" id="specs">
+        <h2 class="section-title">О проекте</h2>
+        <p class="section-subtitle">SMD-установщик — доступное решение для радиолюбителей, студентов и небольших мастерских. Позволяет быстро и аккуратно монтировать компоненты поверхностного монтажа без дорогого промышленного оборудования.</p>
+
+        <h3 style="margin-bottom:14px; font-size:1.3rem; color:var(--heading);">Технические характеристики</h3>
+
+        <div class="cards">
+            <div class="card">
+                <span class="card-number">01</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h3"/><path d="M3 12h3"/><path d="M3 16h3"/><path d="M18 8h3"/><path d="M18 12h3"/><path d="M18 16h3"/><path d="M9 3v3"/><path d="M15 3v3"/><path d="M9 18v3"/><path d="M15 18v3"/></svg>
+                </div>
+                <h3>Рабочая область</h3>
+                <p>600 × 200 мм — увеличенная зона для длинных плат</p>
+            </div>
+            <div class="card">
+                <span class="card-number">02</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3"/><path d="M12 20v3"/><path d="M1 12h3"/><path d="M20 12h3"/></svg>
+                </div>
+                <h3>Точность</h3>
+                <p>Погрешность позиционирования не более 0,1 мм</p>
+            </div>
+            <div class="card">
+                <span class="card-number">03</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+                </div>
+                <h3>Питание</h3>
+                <p>12 В DC, потребление до 30 Вт — работает от обычного адаптера</p>
+            </div>
+            <div class="card">
+                <span class="card-number">04</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M1 9h3"/><path d="M1 15h3"/><path d="M20 9h3"/><path d="M20 15h3"/></svg>
+                </div>
+                <h3>Совместимость</h3>
+                <p>Поддерживает компоненты от типа 0603 и крупнее</p>
+            </div>
+            <div class="card">
+                <span class="card-number">05</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8"/><path d="M12 18v2"/><path d="M7 9l3 3-3 3"/></svg>
+                </div>
+                <h3>Управление</h3>
+                <p>USB-подключение к ПК, открытое ПО с графическим интерфейсом</p>
+            </div>
+            <div class="card">
+                <span class="card-number">06</span>
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v3"/><path d="M5 6h14l2 14H3L5 6z"/><circle cx="12" cy="12" r="1.5"/><path d="M12 12l2.5-2.5"/></svg>
+                </div>
+                <h3>Вес и размеры</h3>
+                <p>~10 кг, 700 × 700 × 300 мм — устойчивая настольная конструкция</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ МАТЕРИАЛЫ ПРОЕКТА ═══════════ -->
+    <section class="section">
+        <h2 class="section-title">Материалы проекта</h2>
+        <p class="section-subtitle">Фото, 3D-модель, чертежи, структурная схема и видео работы — в одном месте. Переключайтесь между категориями.</p>
+
+        <div class="tabs" role="tablist">
+            <button class="tab-btn" data-tab="photos" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                Фотографии
+                <span class="tab-count">2</span>
+            </button>
+            <button class="tab-btn" data-tab="video" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                Видео
+                <span class="tab-count">2</span>
+            </button>
+            <button class="tab-btn active" data-tab="models" role="tab" aria-selected="true">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                3D-модель
+                <span class="tab-count">3D</span>
+            </button>
+            <button class="tab-btn" data-tab="drawing" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                Чертежи
+                <span class="tab-count">4</span>
+            </button>
+            <button class="tab-btn" data-tab="schemes" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24"><path d="M3 3h6v6H3z"/><path d="M15 15h6v6h-6z"/><path d="M9 6h6"/><path d="M12 6v9"/><path d="M12 15h3"/></svg>
+                Структурная схема
+                <span class="tab-count">1</span>
+            </button>
+        </div>
+
+        <!-- ═══ Панель: Фотографии ═══ -->
+        <div class="tab-panel" data-panel="photos" role="tabpanel">
+            <div class="gallery-grid">
+                <article class="gallery-card">
+                    <div class="gallery-preview">
+                        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <div class="gallery-overlay">Открыть</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <span>Фото 1<small>Общий вид</small></span>
+                        <span class="gallery-arrow">→</span>
+                    </div>
+                </article>
+
+                <article class="gallery-card">
+                    <div class="gallery-preview">
+                        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <div class="gallery-overlay">Открыть</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <span>Фото 2<small>Детали и узлы</small></span>
+                        <span class="gallery-arrow">→</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- ═══ Панель: Видео (2 карточки) ═══ -->
+        <div class="tab-panel" data-panel="video" role="tabpanel">
+            <div class="videos-grid">
+
+                <article class="video-card"
+                         data-video="video/change-nozzles.mp4"
+                         data-title="Смена сопел">
+                    <div class="video-card-preview">
+                        <svg class="video-poster-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <rect x="180" y="60" width="280" height="16" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                            <rect x="180" y="60" width="16" height="240" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                            <rect x="444" y="60" width="16" height="240" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                            <rect x="290" y="48" width="60" height="56" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                            <rect x="315" y="104" width="10" height="70" rx="3" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="312" y="174" width="16" height="12" rx="3" fill="#4FACFE"/>
+                            <circle cx="200" cy="290" r="12" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                            <circle cx="240" cy="290" r="12" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                            <circle cx="280" cy="290" r="12" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                        </svg>
+                        <div class="video-badge">Демо</div>
+                        <div class="video-play-btn">
+                            <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                        </div>
+                        <div class="video-duration">00:17</div>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Смена сопел</h4>
+                        <p>Замена вакуумной дюзы на каретке установщика.</p>
+                        <div class="video-card-meta">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            00:17 · HD 1080p
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-card"
+                         data-video="video/placement.mp4"
+                         data-title="Расстановка компонентов на печатную плату">
+                    <div class="video-card-preview">
+                        <svg class="video-poster-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <rect x="80" y="180" width="480" height="120" rx="8" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                            <path d="M 100 210 L 180 210 L 220 250 L 220 290" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <path d="M 540 210 L 460 210 L 420 250 L 420 290" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <path d="M 100 260 L 160 260 L 200 280" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <path d="M 540 260 L 480 260 L 440 280" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <rect x="250" y="200" width="30" height="16" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <rect x="300" y="220" width="40" height="18" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <rect x="360" y="200" width="26" height="14" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <rect x="250" y="250" width="35" height="16" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <rect x="310" y="260" width="22" height="12" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <rect x="315" y="80" width="10" height="60" rx="3" fill="rgba(255,255,255,0.3)"/>
+                            <rect x="312" y="142" width="16" height="12" rx="3" fill="#4FACFE"/>
+                            <rect x="308" y="158" width="24" height="14" rx="2" fill="#FBBF24"/>
+                            <line x1="320" y1="176" x2="320" y2="195" stroke="#00F2FE" stroke-width="1" stroke-dasharray="3 4" opacity="0.7"/>
+                            <circle cx="320" cy="200" r="8" fill="none" stroke="#00F2FE" stroke-width="1.5" opacity="0.7"/>
+                        </svg>
+                        <div class="video-badge">Демо</div>
+                        <div class="video-play-btn">
+                            <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                        </div>
+                        <div class="video-duration">0:22</div>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Расстановка компонентов на печатную плату</h4>
+                        <p>Установка SMD-компонентов на тестовую плату с контролем точности.</p>
+                        <div class="video-card-meta">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            0:22 · HD 1080p
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- ═══ Панель: 3D-модель ═══ -->
+        <div class="tab-panel active" data-panel="models" role="tabpanel">
+            <div class="viewer3d">
+                <div class="viewer3d-canvas" id="viewer3d">
+                    <svg class="fallback-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <linearGradient id="fbBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#1E293B" />
+                                <stop offset="100%" stop-color="#0F172A" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="420" height="300" fill="url(#fbBg)" />
+                        <rect x="80" y="60" width="260" height="12" rx="6" fill="#334155" />
+                        <rect x="80" y="60" width="12" height="170" rx="6" fill="#334155" />
+                        <rect x="328" y="60" width="12" height="170" rx="6" fill="#334155" />
+                        <rect x="180" y="46" width="60" height="50" rx="8" fill="#1E293B" stroke="#4FACFE" stroke-width="2" />
+                        <rect x="188" y="54" width="44" height="6" rx="3" fill="#00F2FE" opacity="0.7" />
+                        <rect x="205" y="96" width="10" height="70" rx="3" fill="#334155" />
+                        <rect x="203" y="164" width="14" height="10" rx="3" fill="#4FACFE" />
+                        <rect x="198" y="178" width="24" height="14" rx="2" fill="#FBBF24" />
+                        <circle cx="210" cy="230" r="10" fill="none" stroke="#00F2FE" stroke-width="1.5" opacity="0.7" />
+                        <circle cx="210" cy="230" r="3" fill="#00F2FE" opacity="0.9" />
+                        <rect x="60" y="230" width="300" height="50" rx="6" fill="#0F2937" stroke="#334155" />
+                        <text x="210" y="285" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="2">ЗАГРУЗКА 3D-ВЬЮЕРА…</text>
+                    </svg>
+                </div>
+
+                <div class="viewer3d-badge">Интерактив 3D</div>
+
+                <div class="viewer3d-controls">
+                    <button class="viewer3d-btn" id="vr3dReset" title="Сбросить вид" aria-label="Сбросить вид">
+                        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 3 3 9 9 9"/></svg>
+                    </button>
+                    <button class="viewer3d-btn active" id="vr3dRotate" title="Авто-вращение" aria-label="Переключить авто-вращение">
+                        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg>
+                    </button>
+                </div>
+
+                <div class="viewer3d-hint">
+                    <span>🖱 Тяните — повернуть</span>
+                    <span>·</span>
+                    <span>🔍 Колёсико — приблизить</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ Панель: ЧЕРТЕЖИ ═══ -->
+        <div class="tab-panel" data-panel="drawing" role="tabpanel">
+            <div class="drawings-grid">
+
+                <article class="drawing-card" data-pdf="docs/obshchiy-vid.pdf" data-title="Общий вид установщика">
+                    <div class="drawing-preview">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                        <span class="drawing-tag">PDF</span>
+                        <div class="drawing-hover">Просмотреть</div>
+                    </div>
+                    <div class="drawing-info">
+                        <h4>Общий вид установщика</h4>
+                        <small>Габаритный чертёж · A2</small>
+                    </div>
+                </article>
+
+                <article class="drawing-card" data-pdf="docs/rama-portala.pdf" data-title="Рама портала">
+                    <div class="drawing-preview">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                        <span class="drawing-tag">PDF</span>
+                        <div class="drawing-hover">Просмотреть</div>
+                    </div>
+                    <div class="drawing-info">
+                        <h4>Рама портала</h4>
+                        <small>Сборочный чертёж · A3</small>
+                    </div>
+                </article>
+
+                <article class="drawing-card" data-pdf="docs/karetka.pdf" data-title="Каретка с дюзой">
+                    <div class="drawing-preview">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                        <span class="drawing-tag">PDF</span>
+                        <div class="drawing-hover">Просмотреть</div>
+                    </div>
+                    <div class="drawing-info">
+                        <h4>Каретка с дюзой</h4>
+                        <small>Сборочный чертёж · A3</small>
+                    </div>
+                </article>
+
+                <article class="drawing-card" data-pdf="docs/plata-upravleniya.pdf" data-title="Плата управления">
+                    <div class="drawing-preview">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                        <span class="drawing-tag">PDF</span>
+                        <div class="drawing-hover">Просмотреть</div>
+                    </div>
+                    <div class="drawing-info">
+                        <h4>Плата управления</h4>
+                        <small>Схема электрическая · A2</small>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- ═══ Панель: СТРУКТУРНАЯ СХЕМА ═══ -->
+        <div class="tab-panel" data-panel="schemes" role="tabpanel">
+            <div class="scheme-wrapper">
+                <svg class="scheme-svg" viewBox="0 0 1100 950" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="sch-arrow-head"/>
+                        </marker>
+                    </defs>
+
+                    <rect width="1100" height="950" class="sch-bg-rect" />
+
+                    <g>
+                        <rect x="60" y="440" width="170" height="60" rx="8" class="sch-block-rect"/>
+                        <text x="145" y="475" text-anchor="middle" class="sch-text-main">
+                            <tspan x="145" dy="0">Плата</tspan>
+                            <tspan x="145" dy="16">питания</tspan>
+                        </text>
+                    </g>
+
+                    <g>
+                        <rect x="330" y="440" width="190" height="60" rx="8" class="sch-block-rect-accent"/>
+                        <text x="425" y="475" text-anchor="middle" class="sch-text-title">
+                            <tspan x="425" dy="0">Плата</tspan>
+                            <tspan x="425" dy="16">управления</tspan>
+                        </text>
+                    </g>
+
+                    <g>
+                        <rect x="320" y="140" width="200" height="60" rx="8" class="sch-block-rect-accent"/>
+                        <text x="420" y="175" text-anchor="middle" class="sch-text-title">
+                            <tspan x="420" dy="0">Персональный</tspan>
+                            <tspan x="420" dy="16">компьютер</tspan>
+                        </text>
+                    </g>
+
+                    <g>
+                        <rect x="650" y="140" width="190" height="60" rx="8" class="sch-block-rect"/>
+                        <text x="745" y="175" text-anchor="middle" class="sch-text-main">USB-концентратор</text>
+                    </g>
+
+                    <g>
+                        <rect x="890" y="70" width="150" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="965" y="96" text-anchor="middle" class="sch-text-main">
+                            <tspan x="965" dy="0">Камера</tspan>
+                            <tspan x="965" dy="14">верхняя</tspan>
+                        </text>
+                    </g>
+
+                    <g>
+                        <rect x="890" y="175" width="150" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="965" y="201" text-anchor="middle" class="sch-text-main">
+                            <tspan x="965" dy="0">Камера</tspan>
+                            <tspan x="965" dy="14">нижняя</tspan>
+                        </text>
+                    </g>
+
+                    <g>
+                        <rect x="650" y="280" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="306" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Светодиодное кольцо</tspan>
+                            <tspan x="765" dy="14">верхнее</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="355" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="381" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Светодиодное кольцо</tspan>
+                            <tspan x="765" dy="14">нижнее</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="430" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="456" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
+                            <tspan x="765" dy="14">Ось OX №1</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="500" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="526" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
+                            <tspan x="765" dy="14">Ось OX №2</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="570" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="596" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
+                            <tspan x="765" dy="14">Ось OY</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="640" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="666" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
+                            <tspan x="765" dy="14">Ось OZ</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="710" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="736" text-anchor="middle" class="sch-text-main">
+                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
+                            <tspan x="765" dy="14">Ось R</tspan>
+                        </text>
+                    </g>
+                    <g>
+                        <rect x="650" y="780" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="813" text-anchor="middle" class="sch-text-main">Пневмораспределитель</text>
+                    </g>
+                    <g>
+                        <rect x="650" y="870" width="230" height="55" rx="8" class="sch-block-rect"/>
+                        <text x="765" y="903" text-anchor="middle" class="sch-text-main">Вакуумный насос</text>
+                    </g>
+
+                    <line x1="230" y1="470" x2="325" y2="470" class="sch-line" marker-end="url(#arr)"/>
+
+                    <line x1="415" y1="435" x2="415" y2="205" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="440" y1="205" x2="440" y2="435" class="sch-line" marker-end="url(#arr)"/>
+
+                    <line x1="525" y1="170" x2="645" y2="170" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="845" y1="170" x2="885" y2="100" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="845" y1="170" x2="885" y2="205" class="sch-line" marker-end="url(#arr)"/>
+
+                    <line x1="525" y1="470" x2="590" y2="470" class="sch-line"/>
+                    <line x1="590" y1="307" x2="590" y2="897" class="sch-line-bus"/>
+
+                    <line x1="590" y1="307" x2="645" y2="307" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="382" x2="645" y2="382" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="457" x2="645" y2="457" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="527" x2="645" y2="527" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="597" x2="645" y2="597" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="667" x2="645" y2="667" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="737" x2="645" y2="737" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="807" x2="645" y2="807" class="sch-line" marker-end="url(#arr)"/>
+                    <line x1="590" y1="897" x2="645" y2="897" class="sch-line" marker-end="url(#arr)"/>
+
+                    <line x1="765" y1="870" x2="765" y2="840" class="sch-line" marker-end="url(#arr)"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ ПОДДЕРЖКА ФОНДА ═══════════ -->
+    <section class="section">
+        <h2 class="section-title">О проекте</h2>
+        <div class="fund-block">
+            <img src="logo.png" alt="Логотип Фонда содействия инновациям" class="fund-logo-svg" onerror="this.style.display='none'">
+            <div class="fund-text">
+                <strong style="color:var(--heading);">Проект создан при поддержке Федерального государственного бюджетного учреждения «Фонд содействия развитию малых форм предприятий в научно-технической сфере» в рамках программы «Студенческий стартап» федерального проекта «Платформа университетского технологического предпринимательства».</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ НОВОСТИ ═══════════ -->
+    <section class="section">
+        <h2 class="section-title">Новости проекта</h2>
+        <div class="cards">
+            <div class="card">
+                <span class="card-number">01</span>
+                <h3>📅 Январь 2026</h3>
+                <p>Получена поддержка Фонда содействия инновациям. Старт разработки.</p>
+            </div>
+            <div class="card">
+                <span class="card-number">02</span>
+                <h3>📅 Март 2026</h3>
+                <p>Подобрана элементная база.</p>
+            </div>
+            <div class="card">
+                <span class="card-number">03</span>
+                <h3>📅 Июнь 2026</h3>
+                <p>Старт практической реализации проекта.</p>
+            </div>
+            <div class="card">
+                <span class="card-number">04</span>
+                <h3>📅 Август 2026</h3>
+                <p>Был протестирован первый образец из партии.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ КОНТАКТЫ ═══════════ -->
+    <section class="section" id="contacts">
+        <h2 class="section-title">Контакты</h2>
+        <p class="section-subtitle">Свяжитесь с нами любым удобным способом — ответим быстро.</p>
+
+        <div class="contacts">
+            <div class="contact-card">
+                <div class="contact-icon">🏢</div>
+                <div class="contact-body">
+                    <h3>Предприятие</h3>
+                    <div class="contact-label">Организация</div>
+                    <div class="contact-line"><strong>ООО «СтанкоПром»</strong></div>
+                    <div class="divider"></div>
+                    <div class="contact-label">Юридический адрес</div>
+                    <div class="contact-line">ул. Станционная, 2а, офис 301</div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-body">
+                    <h3>Связь</h3>
+                    <div class="contact-label">Электронная почта</div>
+                    <div class="contact-line">
+                        <a href="mailto:burmalinoviy@yandex.com">burmalinoviy@yandex.com</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="contact-label">Телефон</div>
+                    <div class="contact-line">
+                        <a href="tel:+79246540968">+7 (924) 654-09-68</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ ПОДВАЛ ═══════════ -->
+    <footer class="footer">
+        <p class="footer-main">© 2026 ООО «СтанкоПром». Проект создан при поддержке <span class="footer-highlight">Фонда содействия инновациям</span>.</p>
+        <p class="footer-note"></p>
+    </footer>
+
+    <!-- ═══════════ МОДАЛЬНОЕ ОКНО PDF ═══════════ -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-backdrop" id="pdfBackdrop"></div>
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 class="pdf-modal-title" id="pdfTitle">Название чертежа</h3>
+                <div class="pdf-modal-actions">
+                    <a href="#" target="_blank" class="pdf-modal-btn" id="pdfOpenNew" title="Открыть в новой вкладке">
+                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <a href="#" download class="pdf-modal-btn" id="pdfDownload" title="Скачать">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </a>
+                    <button class="pdf-modal-btn pdf-modal-close" id="pdfClose" title="Закрыть" aria-label="Закрыть">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <iframe class="pdf-modal-frame" id="pdfFrame" title="Просмотр чертежа"></iframe>
+        </div>
+    </div>
+
+    <!-- ═══════════ МОДАЛЬНОЕ ОКНО ВИДЕО ═══════════ -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-backdrop" id="videoBackdrop"></div>
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 class="video-modal-title" id="videoTitle">Видео</h3>
+                <button class="video-modal-btn" id="videoClose" title="Закрыть" aria-label="Закрыть">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="video-modal-body" id="videoBody"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════ ОСНОВНЫЕ СКРИПТЫ ═══════════ -->
+    <script>
+        // ── Переключение темы ──
+        (function() {
+            const html = document.documentElement;
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            if (!toggle || !icon) return;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            toggle.addEventListener('click', function() {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                setTheme(next);
+                localStorage.setItem('theme', next);
+            });
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    icon.textContent = '☀️';
+                    toggle.title = 'Переключить на светлую тему';
+                } else {
+                    html.removeAttribute('data-theme');
+                    icon.textContent = '🌙';
+                    toggle.title = 'Переключить на тёмную тему';
+                }
+            }
+        })();
+
+        // ── Переключение табов ──
+        (function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            function activateTab(target) {
+                tabButtons.forEach(b => {
+                    const isActive = b.dataset.tab === target;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+                tabPanels.forEach(p => {
+                    p.classList.toggle('active', p.dataset.panel === target);
+                });
+
+                if (target === 'models' && window.__vr3dInit) {
+                    setTimeout(() => window.__vr3dInit(), 60);
+                }
+            }
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+            });
+        })();
+
+        // ── Модальное окно для чертежей ──
+        (function() {
+            const modal = document.getElementById('pdfModal');
+            const backdrop = document.getElementById('pdfBackdrop');
+            const closeBtn = document.getElementById('pdfClose');
+            const titleEl = document.getElementById('pdfTitle');
+            const frameEl = document.getElementById('pdfFrame');
+            const openNewEl = document.getElementById('pdfOpenNew');
+            const downloadEl = document.getElementById('pdfDownload');
+            const cards = document.querySelectorAll('.drawing-card');
+
+            if (!modal) return;
+
+            function openPdf(path, title) {
+                titleEl.textContent = title || 'Чертёж';
+                frameEl.src = path;
+                openNewEl.href = path;
+                downloadEl.href = path;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePdf() {
+                modal.classList.remove('open');
+                frameEl.src = '';
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    openPdf(card.dataset.pdf, card.dataset.title);
+                });
+            });
+
+            closeBtn.addEventListener('click', closePdf);
+            backdrop.addEventListener('click', closePdf);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closePdf();
+                }
+            });
+        })();
+
+        // ── Модальное окно для видео (два ролика) ──
+        (function() {
+            const modal = document.getElementById('videoModal');
+            const backdrop = document.getElementById('videoBackdrop');
+            const closeBtn = document.getElementById('videoClose');
+            const titleEl = document.getElementById('videoTitle');
+            const body = document.getElementById('videoBody');
+            const cards = document.querySelectorAll('.video-card');
+
+            if (!modal || !cards.length) return;
+
+            function buildPlayer(src) {
+                return `
+                    <video controls autoplay playsinline>
+                        <source src="${src}" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                `;
+            }
+
+            function openVideo(src, title) {
+                titleEl.textContent = title || 'Видео';
+                body.innerHTML = buildPlayer(src);
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeVideo() {
+                modal.classList.remove('open');
+                body.innerHTML = '';
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    openVideo(card.dataset.video, card.dataset.title);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeVideo);
+            backdrop.addEventListener('click', closeVideo);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeVideo();
+                }
+            });
+        })();
+    </script>
+
+    <!-- ═══════════ 3D-ВЬЮЕР (Three.js + .glb) ═══════════ -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+
+    <script type="module">
+        try {
+            const THREE = await import('three');
+            const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+            const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+
+            let viewer = null;
+
+            window.__vr3dInit = function initViewer3d() {
+                const container = document.getElementById('viewer3d');
+                if (!container) return;
+
+                if (viewer) { viewer.resize(); return; }
+
+                const w = container.clientWidth;
+                const h = container.clientHeight;
+                if (w < 50 || h < 50) { setTimeout(window.__vr3dInit, 80); return; }
+
+                container.innerHTML = '';
+
+                const scene = new THREE.Scene();
+
+                const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 500);
+                camera.position.set(9, 7, 12);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(w, h);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                renderer.outputColorSpace = THREE.SRGBColorSpace;
+                container.appendChild(renderer.domElement);
+
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.07;
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 1.1;
+                controls.minDistance = 3;
+                controls.maxDistance = 50;
+                controls.maxPolarAngle = Math.PI / 1.9;
+                controls.target.set(0, 0.5, 0);
+
+                scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+
+                const dir1 = new THREE.DirectionalLight(0xffffff, 1.6);
+                dir1.position.set(8, 14, 10);
+                dir1.castShadow = true;
+                dir1.shadow.mapSize.set(2048, 2048);
+                dir1.shadow.camera.left = -15;
+                dir1.shadow.camera.right = 15;
+                dir1.shadow.camera.top = 15;
+                dir1.shadow.camera.bottom = -15;
+                scene.add(dir1);
+
+                const dir2 = new THREE.DirectionalLight(0x00F2FE, 0.7);
+                dir2.position.set(-8, 6, -8);
+                scene.add(dir2);
+
+                const dir3 = new THREE.DirectionalLight(0x4FACFE, 0.5);
+                dir3.position.set(-6, 3, 10);
+                scene.add(dir3);
+
+                const groundGeo = new THREE.PlaneGeometry(60, 60);
+                const groundMat = new THREE.ShadowMaterial({ opacity: 0.15 });
+                const ground = new THREE.Mesh(groundGeo, groundMat);
+                ground.rotation.x = -Math.PI / 2;
+                ground.position.y = -0.01;
+                ground.receiveShadow = true;
+                scene.add(ground);
+
+                const machine = new THREE.Group();
+                scene.add(machine);
+
+                const progressEl = document.createElement('div');
+                progressEl.style.cssText = `
+                    position: absolute; bottom: 60px; left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.7); color: #fff;
+                    padding: 8px 18px; border-radius: 20px;
+                    font-size: 0.8rem; font-weight: 600; z-index: 6;
+                    backdrop-filter: blur(8px);
+                    font-family: 'Segoe UI', sans-serif;
+                    pointer-events: none;
+                `;
+                progressEl.textContent = 'Загрузка модели… 0%';
+                container.appendChild(progressEl);
+
+                const loader = new GLTFLoader();
+                loader.load(
+                    'models/smd-machine.glb',
+                    (gltf) => {
+                        const model = gltf.scene;
+
+                        model.traverse((obj) => {
+                            if (obj.isMesh) {
+                                obj.castShadow = true;
+                                obj.receiveShadow = true;
+                                if (obj.material && obj.material.isMeshStandardMaterial) {
+                                    obj.material.envMapIntensity = 1.0;
+                                }
+                            }
+                        });
+
+                        // ─── 🔄 ПОВОРОТ МОДЕЛИ ───
+                        // 180° по X — переворачивает модель «с головы на ноги».
+                        model.rotation.x = Math.PI;
+
+                        // Обязательно обновить матрицы после поворота,
+                        // чтобы автоцентрирование рассчитало правильный бокс.
+                        model.updateMatrixWorld(true);
+
+                        // Автоцентрирование и автомасштаб (после поворота)
+                        const box = new THREE.Box3().setFromObject(model);
+                        const size = box.getSize(new THREE.Vector3());
+                        const center = box.getCenter(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const targetSize = 8;
+                        const scale = targetSize / maxDim;
+                        model.scale.setScalar(scale);
+                        model.position.sub(center.multiplyScalar(scale));
+                        model.position.y += (size.y * scale) / 2 - 0.01;
+
+                        machine.add(model);
+
+                        const newBox = new THREE.Box3().setFromObject(model);
+                        const newSize = newBox.getSize(new THREE.Vector3());
+                        const dist = Math.max(newSize.x, newSize.y, newSize.z) * 1.8;
+                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
+                        controls.target.set(0, newSize.y / 2, 0);
+                        controls.update();
+
+                        progressEl.remove();
+
+                        if (gltf.animations && gltf.animations.length) {
+                            const mixer = new THREE.AnimationMixer(model);
+                            gltf.animations.forEach((clip) => {
+                                mixer.clipAction(clip).play();
+                            });
+                            viewer = viewer || {};
+                            viewer.mixer = mixer;
+                        }
+                    },
+                    (xhr) => {
+                        if (xhr.total) {
+                            const pct = Math.round((xhr.loaded / xhr.total) * 100);
+                            progressEl.textContent = `Загрузка модели… ${pct}%`;
+                        } else {
+                            progressEl.textContent = 'Загрузка модели…';
+                        }
+                    },
+                    (error) => {
+                        console.error('Ошибка загрузки .glb:', error);
+                        progressEl.textContent = '⚠ Не удалось загрузить модель';
+                        progressEl.style.background = 'rgba(220, 38, 38, 0.85)';
+                        setTimeout(() => progressEl.remove(), 3500);
+                    }
+                );
+
+                const btnRotate = document.getElementById('vr3dRotate');
+                const btnReset  = document.getElementById('vr3dReset');
+
+                if (btnRotate) {
+                    btnRotate.addEventListener('click', () => {
+                        controls.autoRotate = !controls.autoRotate;
+                        btnRotate.classList.toggle('active', controls.autoRotate);
+                    });
+                }
+                if (btnReset) {
+                    btnReset.addEventListener('click', () => {
+                        const box = new THREE.Box3().setFromObject(machine);
+                        const size = box.getSize(new THREE.Vector3());
+                        const dist = Math.max(size.x, size.y, size.z) * 1.8;
+                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
+                        controls.target.set(0, size.y / 2, 0);
+                        controls.update();
+                    });
+                }
+
+                function resize() {
+                    const w2 = container.clientWidth;
+                    const h2 = container.clientHeight;
+                    if (w2 < 10 || h2 < 10) return;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                }
+                window.addEventListener('resize', resize);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    if (viewer && viewer.mixer) {
+                        viewer.mixer.update(0.016);
+                    }
+
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                viewer = viewer || {};
+                viewer.resize = resize;
+            };
+
+            if (document.querySelector('.tab-panel.active[data-panel="models"]')) {
+                window.__vr3dInit();
+            }
+        } catch (err) {
+            console.warn('Three.js не загрузился, используется SVG-заглушка:', err);
+        }
+    </script>
+
+</body>
+</html>
