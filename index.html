@@ -44,14 +44,6 @@
             --viewer-btn-bg: rgba(15, 31, 61, 0.35);
             --viewer-btn-border: rgba(255,255,255,0.4);
 
-            --sch-bg: #EAF2FE;
-            --sch-block: #FFFFFF;
-            --sch-border: #93C5FD;
-            --sch-text: #0F1F3D;
-            --sch-text-light: #475569;
-            --sch-line: #1a73e8;
-            --sch-bus: #4A9BF5;
-
             --h-bg-1: #EAF2FE;
             --h-bg-2: #F5F9FF;
             --h-dots: #93C5FD;
@@ -108,14 +100,6 @@
             --viewer-hint-bg: rgba(0, 242, 254, 0.15);
             --viewer-btn-bg: rgba(0, 242, 254, 0.15);
             --viewer-btn-border: rgba(0, 242, 254, 0.35);
-
-            --sch-bg: #0B1424;
-            --sch-block: #1E293B;
-            --sch-border: #4FACFE;
-            --sch-text: #E2E8F0;
-            --sch-text-light: #94A3B8;
-            --sch-line: #00F2FE;
-            --sch-bus: #4FACFE;
 
             --h-bg-1: #0F172A;
             --h-bg-2: #1E1B4B;
@@ -742,35 +726,6 @@
             stroke-linejoin: round;
         }
 
-        /* ═══ СТРУКТУРНАЯ СХЕМА ═══ */
-        .scheme-wrapper {
-            background: var(--sch-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-            overflow-x: auto;
-        }
-        .scheme-wrapper:hover {
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary-light);
-        }
-        .scheme-svg {
-            display: block;
-            width: 100%;
-            min-width: 700px;
-            height: auto;
-        }
-        .sch-bg-rect    { fill: var(--sch-bg); transition: fill 0.3s; }
-        .sch-block-rect { fill: var(--sch-block); stroke: var(--sch-border); stroke-width: 1.6; transition: fill 0.3s, stroke 0.3s; }
-        .sch-block-rect-accent { fill: var(--sch-block); stroke: var(--sch-line); stroke-width: 2; transition: fill 0.3s, stroke 0.3s; }
-        .sch-line       { stroke: var(--sch-line); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
-        .sch-line-bus   { stroke: var(--sch-bus); stroke-width: 1.8; fill: none; transition: stroke 0.3s; }
-        .sch-arrow-head { fill: var(--sch-line); transition: fill 0.3s; }
-        .sch-text-main  { fill: var(--sch-text); font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 600; font-size: 12.5px; transition: fill 0.3s; }
-        .sch-text-title { fill: var(--sch-text); font-family: 'Segoe UI', system-ui, sans-serif; font-weight: 800; font-size: 14px; transition: fill 0.3s; }
-
         /* ═══ 3D VIEWER ═══ */
         .viewer3d {
             position: relative;
@@ -1392,8 +1347,6 @@
             .viewer3d-btn { width: 34px; height: 34px; }
             .viewer3d-hint { font-size: 0.7rem; padding: 6px 12px; gap: 6px; }
 
-            .scheme-wrapper { padding: 12px; }
-
             .drawings-grid { grid-template-columns: 1fr; gap: 16px; }
             .pdf-modal { padding: 12px; }
             .pdf-modal-content { height: 92vh; max-height: none; }
@@ -1679,7 +1632,7 @@
     <!-- ═══════════ МАТЕРИАЛЫ ПРОЕКТА ═══════════ -->
     <section class="section">
         <h2 class="section-title">Материалы проекта</h2>
-        <p class="section-subtitle">Фото, 3D-модель, чертежи, структурная схема и видео работы — в одном месте. Переключайтесь между категориями.</p>
+        <p class="section-subtitle">Фото, 3D-модель, чертежи и видео работы — в одном месте. Переключайтесь между категориями.</p>
 
         <div class="tabs" role="tablist">
             <button class="tab-btn" data-tab="photos" role="tab" aria-selected="false">
@@ -1701,11 +1654,6 @@
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
                 Чертежи
                 <span class="tab-count">2</span>
-            </button>
-            <button class="tab-btn" data-tab="schemes" role="tab" aria-selected="false">
-                <svg viewBox="0 0 24 24"><path d="M3 3h6v6H3z"/><path d="M15 15h6v6h-6z"/><path d="M9 6h6"/><path d="M12 6v9"/><path d="M12 15h3"/></svg>
-                Структурная схема
-                <span class="tab-count">1</span>
             </button>
         </div>
 
@@ -1869,164 +1817,22 @@
                     </div>
                     <div class="drawing-info">
                         <h4>Габаритный чертёж</h4>
-                        <small>Габаритный чертёж · A2</small>
+                        <small>Габаритный чертёж · A3</small>
                     </div>
                 </article>
 
-                <article class="drawing-card" data-pdf="docs/strukturnaya-shema.pdf" data-title="Схема структурная">
+                <article class="drawing-card" data-pdf="docs/strukturnaya-shema.pdf" data-title="Структурная схема">
                     <div class="drawing-preview">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
                         <span class="drawing-tag">PDF</span>
                         <div class="drawing-hover">Просмотреть</div>
                     </div>
                     <div class="drawing-info">
-                        <h4>Схема структурная</h4>
-                        <small>Схема структурная · A2</small>
+                        <h4>Структурная схема</h4>
+                        <small>Структурная схема · A3</small>
                     </div>
                 </article>
 
-            </div>
-        </div>
-
-        <!-- ═══ Панель: СТРУКТУРНАЯ СХЕМА ═══ -->
-        <div class="tab-panel" data-panel="schemes" role="tabpanel">
-            <div class="scheme-wrapper">
-                <svg class="scheme-svg" viewBox="0 0 1100 950" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                    <defs>
-                        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" class="sch-arrow-head"/>
-                        </marker>
-                    </defs>
-
-                    <rect width="1100" height="950" class="sch-bg-rect" />
-
-                    <g>
-                        <rect x="60" y="440" width="170" height="60" rx="8" class="sch-block-rect"/>
-                        <text x="145" y="475" text-anchor="middle" class="sch-text-main">
-                            <tspan x="145" dy="0">Плата</tspan>
-                            <tspan x="145" dy="16">питания</tspan>
-                        </text>
-                    </g>
-
-                    <g>
-                        <rect x="330" y="440" width="190" height="60" rx="8" class="sch-block-rect-accent"/>
-                        <text x="425" y="475" text-anchor="middle" class="sch-text-title">
-                            <tspan x="425" dy="0">Плата</tspan>
-                            <tspan x="425" dy="16">управления</tspan>
-                        </text>
-                    </g>
-
-                    <g>
-                        <rect x="320" y="140" width="200" height="60" rx="8" class="sch-block-rect-accent"/>
-                        <text x="420" y="175" text-anchor="middle" class="sch-text-title">
-                            <tspan x="420" dy="0">Персональный</tspan>
-                            <tspan x="420" dy="16">компьютер</tspan>
-                        </text>
-                    </g>
-
-                    <g>
-                        <rect x="650" y="140" width="190" height="60" rx="8" class="sch-block-rect"/>
-                        <text x="745" y="175" text-anchor="middle" class="sch-text-main">USB-концентратор</text>
-                    </g>
-
-                    <g>
-                        <rect x="890" y="70" width="150" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="965" y="96" text-anchor="middle" class="sch-text-main">
-                            <tspan x="965" dy="0">Камера</tspan>
-                            <tspan x="965" dy="14">верхняя</tspan>
-                        </text>
-                    </g>
-
-                    <g>
-                        <rect x="890" y="175" width="150" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="965" y="201" text-anchor="middle" class="sch-text-main">
-                            <tspan x="965" dy="0">Камера</tspan>
-                            <tspan x="965" dy="14">нижняя</tspan>
-                        </text>
-                    </g>
-
-                    <g>
-                        <rect x="650" y="280" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="306" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Светодиодное кольцо</tspan>
-                            <tspan x="765" dy="14">верхнее</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="355" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="381" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Светодиодное кольцо</tspan>
-                            <tspan x="765" dy="14">нижнее</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="430" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="456" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
-                            <tspan x="765" dy="14">Ось OX №1</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="500" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="526" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
-                            <tspan x="765" dy="14">Ось OX №2</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="570" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="596" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
-                            <tspan x="765" dy="14">Ось OY</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="640" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="666" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
-                            <tspan x="765" dy="14">Ось OZ</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="710" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="736" text-anchor="middle" class="sch-text-main">
-                            <tspan x="765" dy="0">Шаговый двигатель</tspan>
-                            <tspan x="765" dy="14">Ось R</tspan>
-                        </text>
-                    </g>
-                    <g>
-                        <rect x="650" y="780" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="813" text-anchor="middle" class="sch-text-main">Пневмораспределитель</text>
-                    </g>
-                    <g>
-                        <rect x="650" y="870" width="230" height="55" rx="8" class="sch-block-rect"/>
-                        <text x="765" y="903" text-anchor="middle" class="sch-text-main">Вакуумный насос</text>
-                    </g>
-
-                    <line x1="230" y1="470" x2="325" y2="470" class="sch-line" marker-end="url(#arr)"/>
-
-                    <line x1="415" y1="435" x2="415" y2="205" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="440" y1="205" x2="440" y2="435" class="sch-line" marker-end="url(#arr)"/>
-
-                    <line x1="525" y1="170" x2="645" y2="170" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="845" y1="170" x2="885" y2="100" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="845" y1="170" x2="885" y2="205" class="sch-line" marker-end="url(#arr)"/>
-
-                    <line x1="525" y1="470" x2="590" y2="470" class="sch-line"/>
-                    <line x1="590" y1="307" x2="590" y2="897" class="sch-line-bus"/>
-
-                    <line x1="590" y1="307" x2="645" y2="307" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="382" x2="645" y2="382" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="457" x2="645" y2="457" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="527" x2="645" y2="527" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="597" x2="645" y2="597" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="667" x2="645" y2="667" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="737" x2="645" y2="737" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="807" x2="645" y2="807" class="sch-line" marker-end="url(#arr)"/>
-                    <line x1="590" y1="897" x2="645" y2="897" class="sch-line" marker-end="url(#arr)"/>
-
-                    <line x1="765" y1="870" x2="765" y2="840" class="sch-line" marker-end="url(#arr)"/>
-                </svg>
             </div>
         </div>
     </section>
@@ -2413,14 +2219,10 @@
                         });
 
                         // ─── 🔄 ПОВОРОТ МОДЕЛИ ───
-                        // 180° по X — переворачивает модель «с головы на ноги».
                         model.rotation.x = Math.PI;
-
-                        // Обязательно обновить матрицы после поворота,
-                        // чтобы автоцентрирование рассчитало правильный бокс.
                         model.updateMatrixWorld(true);
 
-                        // Автоцентрирование и автомасштаб (после поворота)
+                        // Автоцентрирование и автомасштаб
                         const box = new THREE.Box3().setFromObject(model);
                         const size = box.getSize(new THREE.Vector3());
                         const center = box.getCenter(new THREE.Vector3());
