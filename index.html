@@ -517,6 +517,21 @@
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .gallery-card:hover .gallery-preview svg { transform: scale(1.15) rotate(-5deg); }
+
+        /* ── НОВОЕ: картинки в галерее ── */
+        .gallery-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .gallery-card:hover .gallery-preview img {
+            transform: scale(1.06);
+        }
+
         .gallery-overlay {
             position: absolute; inset: 0;
             background: linear-gradient(135deg, rgba(26,115,232,0.9) 0%, rgba(0,188,212,0.9) 100%);
@@ -1662,7 +1677,7 @@
             <div class="gallery-grid">
                 <article class="gallery-card">
                     <div class="gallery-preview">
-                        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <img src="images/photo-1.jpg" alt="Общий вид SMD-установщика">
                         <div class="gallery-overlay">Открыть</div>
                     </div>
                     <div class="gallery-caption">
@@ -1673,7 +1688,7 @@
 
                 <article class="gallery-card">
                     <div class="gallery-preview">
-                        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <img src="images/photo-2.jpg" alt="Детали и узлы SMD-установщика">
                         <div class="gallery-overlay">Открыть</div>
                     </div>
                     <div class="gallery-caption">
@@ -2102,6 +2117,37 @@
                 }
             });
         })();
+
+        // ── Открытие фотографий в полный экран (лайтбокс) ──
+        (function() {
+            document.querySelectorAll('.gallery-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('.gallery-preview img');
+                    if (!img) return;
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed; inset: 0; z-index: 1000;
+                        background: rgba(0,0,0,0.92);
+                        display: flex; align-items: center; justify-content: center;
+                        cursor: zoom-out; padding: 24px;
+                        animation: fadeIn 0.25s ease;
+                    `;
+                    const bigImg = document.createElement('img');
+                    bigImg.src = img.src;
+                    bigImg.alt = img.alt;
+                    bigImg.style.cssText = 'max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);';
+                    overlay.appendChild(bigImg);
+                    overlay.addEventListener('click', () => overlay.remove());
+                    document.addEventListener('keydown', function esc(e) {
+                        if (e.key === 'Escape') {
+                            overlay.remove();
+                            document.removeEventListener('keydown', esc);
+                        }
+                    });
+                    document.body.appendChild(overlay);
+                });
+            });
+        })();
     </script>
 
     <!-- ═══════════ 3D-ВЬЮЕР (Three.js + .glb) ═══════════ -->
@@ -2218,11 +2264,9 @@
                             }
                         });
 
-                        // ─── 🔄 ПОВОРОТ МОДЕЛИ ───
                         model.rotation.x = Math.PI;
                         model.updateMatrixWorld(true);
 
-                        // Автоцентрирование и автомасштаб
                         const box = new THREE.Box3().setFromObject(model);
                         const size = box.getSize(new THREE.Vector3());
                         const center = box.getCenter(new THREE.Vector3());
