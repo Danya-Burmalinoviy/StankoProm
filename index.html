@@ -518,7 +518,7 @@
         }
         .gallery-card:hover .gallery-preview svg { transform: scale(1.15) rotate(-5deg); }
 
-        /* ── НОВОЕ: картинки в галерее ── */
+        /* ── Картинки в галерее ── */
         .gallery-preview img {
             width: 100%;
             height: 100%;
@@ -551,31 +551,6 @@
             transition: transform 0.3s;
         }
         .gallery-card:hover .gallery-overlay::after { transform: translateX(6px); }
-        .gallery-caption {
-            padding: 16px 20px;
-            display: flex;
-            align-items: center; justify-content: space-between;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--heading);
-            transition: color 0.3s;
-        }
-        .gallery-caption small {
-            display: block;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-top: 2px;
-        }
-        .gallery-arrow {
-            color: var(--primary);
-            font-size: 1.1rem;
-            transition: transform 0.3s;
-        }
-        .gallery-card:hover .gallery-arrow { transform: translateX(4px); }
 
         /* ═══ ВИДЕО — сетка карточек ═══ */
         .videos-grid {
@@ -1680,20 +1655,12 @@
                         <img src="images/photo-1.jpg" alt="Общий вид SMD-установщика">
                         <div class="gallery-overlay">Открыть</div>
                     </div>
-                    <div class="gallery-caption">
-                        <span>Фото 1<small>Общий вид</small></span>
-                        <span class="gallery-arrow">→</span>
-                    </div>
                 </article>
 
                 <article class="gallery-card">
                     <div class="gallery-preview">
                         <img src="images/photo-2.jpg" alt="Детали и узлы SMD-установщика">
                         <div class="gallery-overlay">Открыть</div>
-                    </div>
-                    <div class="gallery-caption">
-                        <span>Фото 2<small>Детали и узлы</small></span>
-                        <span class="gallery-arrow">→</span>
                     </div>
                 </article>
             </div>
@@ -1886,6 +1853,12 @@
                 <span class="card-number">04</span>
                 <h3>📅 Август 2026</h3>
                 <p>Был протестирован первый образец из партии.</p>
+            </div>
+            <!-- НОВАЯ НОВОСТЬ -->
+            <div class="card">
+                <span class="card-number">05</span>
+                <h3>📅 Октябрь 2026</h3>
+                <p>За октябрь закончена сборка второго образца.</p>
             </div>
         </div>
     </section>
