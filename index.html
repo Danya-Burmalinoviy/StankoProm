@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMD-установщик — для хобби и радиолюбителей</title>
+
+    <!-- ═══ Значок (favicon) SMD-установщика ═══ -->
+    <link rel="icon" type="image/svg+xml"
+          href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22g%22%20x1=%220%22%20y1=%220%22%20x2=%221%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%234F46E5%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23DB2777%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22url(%23g)%22/%3E%3Crect%20x=%2210%22%20y=%2244%22%20width=%2244%22%20height=%2212%22%20rx=%223%22%20fill=%22%23047857%22/%3E%3Crect%20x=%2213%22%20y=%2247%22%20width=%225%22%20height=%222.5%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2213%22%20y=%2251%22%20width=%225%22%20height=%222.5%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2246%22%20y=%2247%22%20width=%225%22%20height=%222.5%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2246%22%20y=%2251%22%20width=%225%22%20height=%222.5%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2229%22%20y=%226%22%20width=%226%22%20height=%2212%22%20rx=%222%22%20fill=%22%2394A3B8%22/%3E%3Cpath%20d=%22M28%2018h8l-2.5%205h-3z%22%20fill=%22%2394A3B8%22/%3E%3Crect%20x=%2220%22%20y=%2227%22%20width=%225%22%20height=%226%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2239%22%20y=%2227%22%20width=%225%22%20height=%226%22%20rx=%221%22%20fill=%22%23FBBF24%22/%3E%3Crect%20x=%2224%22%20y=%2226%22%20width=%2216%22%20height=%227%22%20rx=%221%22%20fill=%22%231E293B%22/%3E%3Ccircle%20cx=%2250%22%20cy=%2250%22%20r=%228%22%20fill=%22%2310B981%22%20stroke=%22%23fff%22%20stroke-width=%222%22/%3E%3Cpath%20d=%22M46.5%2050l2.5%202.5%204.5-5%22%20fill=%22none%22%20stroke=%22%23fff%22%20stroke-width=%222%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E">
+    <link rel="alternate icon" type="image/png" href="favicon-64.png">
+
     <style>
         :root {
             --primary: #1a73e8;
@@ -1533,6 +1539,24 @@
         .footer .footer-note { font-size: 0.82rem; opacity: 0.85; }
         .footer .footer-highlight { color: var(--footer-accent); font-weight: 600; cursor: default; }
 
+        /* Значок в подвале */
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        .footer-logo svg {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            box-shadow: 0 8px 28px rgba(79, 70, 229, 0.35);
+            transition: transform 0.3s;
+        }
+        .footer-logo svg:hover { transform: translateY(-3px) scale(1.04); }
+        [data-theme="dark"] .footer-logo svg {
+            box-shadow: 0 8px 28px rgba(0, 242, 254, 0.25);
+        }
+
         /* ── Адаптив ── */
         @media (max-width: 768px) {
             .hero-inner { flex-direction: column-reverse; text-align: center; }
@@ -1557,6 +1581,7 @@
 
             .footer { padding: 32px 20px; }
             .footer .footer-main { font-size: 0.88rem; }
+            .footer-logo svg { width: 60px; height: 60px; }
 
             .card-number { font-size: 1.8rem; top: 14px; right: 18px; }
             .card-icon { width: 56px; height: 56px; border-radius: 16px; }
@@ -1899,7 +1924,6 @@
         <!-- ═══ Панель: Фотографии ═══ -->
         <div class="tab-panel" data-panel="photos" role="tabpanel">
             <div class="photos-grid">
-                <!-- Фото 1 -->
                 <article class="photo-card" data-photo="images/photo-1.jpg" data-title="Общий вид">
                     <div class="photo-preview">
                         <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -1912,7 +1936,6 @@
                     </div>
                 </article>
 
-                <!-- Фото 2 -->
                 <article class="photo-card" data-photo="images/photo-2.jpg" data-title="Общий вид">
                     <div class="photo-preview">
                         <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -2161,555 +2184,85 @@
 
     <!-- ═══════════ ПОДВАЛ ═══════════ -->
     <footer class="footer">
-        <p class="footer-main">© 2026 ООО «СтанкоПром». Проект создан при поддержке <span class="footer-highlight">Фонда содействия инновациям</span>.</p>
-        <p class="footer-note"></p>
-    </footer>
+        <!-- ═══ Значок проекта ═══ -->
+        <div class="footer-logo">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="favBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"   stop-color="#4F46E5"/>
+                  <stop offset="55%"  stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#DB2777"/>
+                </linearGradient>
+                <linearGradient id="favBoard" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="#34D399"/>
+                  <stop offset="100%" stop-color="#047857"/>
+                </linearGradient>
+                <linearGradient id="favMetal" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%"   stop-color="#94A3B8"/>
+                  <stop offset="35%"  stop-color="#F8FAFC"/>
+                  <stop offset="65%"  stop-color="#CBD5E1"/>
+                  <stop offset="100%" stop-color="#64748B"/>
+                </linearGradient>
+                <linearGradient id="favChip" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="#334155"/>
+                  <stop offset="100%" stop-color="#0F172A"/>
+                </linearGradient>
+                <filter id="favShadow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1E1B4B" flood-opacity="0.4"/>
+                </filter>
+              </defs>
 
-    <!-- ═══════════ МОДАЛЬНОЕ ОКНО PDF ═══════════ -->
-    <div class="pdf-modal" id="pdfModal">
-        <div class="pdf-modal-backdrop" id="pdfBackdrop"></div>
-        <div class="pdf-modal-content">
-            <div class="pdf-modal-header">
-                <h3 class="pdf-modal-title" id="pdfTitle">Название чертежа</h3>
-                <div class="pdf-modal-actions">
-                    <a href="#" target="_blank" class="pdf-modal-btn" id="pdfOpenNew" title="Открыть в новой вкладке">
-                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    </a>
-                    <a href="#" download class="pdf-modal-btn" id="pdfDownload" title="Скачать">
-                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </a>
-                    <button class="pdf-modal-btn pdf-modal-close" id="pdfClose" title="Закрыть" aria-label="Закрыть">
-                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </button>
-                </div>
-            </div>
-            <iframe class="pdf-modal-frame" id="pdfFrame" title="Просмотр чертежа"></iframe>
+              <rect width="64" height="64" rx="15" fill="url(#favBg)"/>
+
+              <g fill="#ffffff" opacity="0.16">
+                <circle cx="8"  cy="8"  r="1.1"/>
+                <circle cx="12" cy="5"  r="0.9"/>
+                <circle cx="5"  cy="14" r="0.9"/>
+                <circle cx="57" cy="9"  r="1"/>
+                <circle cx="59" cy="15" r="0.8"/>
+              </g>
+
+              <g filter="url(#favShadow)">
+                <rect x="9" y="42" width="46" height="14" rx="3" fill="url(#favBoard)"/>
+              </g>
+              <g stroke="#6EE7B7" stroke-width="1" stroke-linecap="round" opacity="0.8">
+                <path d="M13 51h9M31 51h7M42 51h6"/>
+              </g>
+              <g fill="#FBBF24">
+                <rect x="12" y="45" width="5" height="2.6" rx="1"/>
+                <rect x="12" y="52.4" width="5" height="2.6" rx="1"/>
+                <rect x="45" y="45" width="5" height="2.6" rx="1"/>
+                <rect x="45" y="52.4" width="5" height="2.6" rx="1"/>
+                <rect x="24" y="46" width="16" height="8" rx="1.4" fill="#FDE68A" opacity="0.55"/>
+              </g>
+
+              <g fill="none" stroke="#67E8F9" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+                <path d="M19 25v-3h3"/>
+                <path d="M45 25v-3h-3"/>
+                <path d="M19 33v3h3"/>
+                <path d="M45 33v3h-3"/>
+              </g>
+
+              <rect x="29" y="4" width="6" height="12" rx="2" fill="url(#favMetal)"/>
+              <rect x="26.5" y="8" width="11" height="3" rx="1.5" fill="#64748B"/>
+              <path d="M28 16h8l-2.6 6h-2.8z" fill="url(#favMetal)"/>
+              <ellipse cx="32" cy="22.5" rx="3.2" ry="1.3" fill="#475569"/>
+
+              <g filter="url(#favShadow)">
+                <rect x="20" y="26" width="5" height="5.4" rx="1.2" fill="#FBBF24"/>
+                <rect x="39" y="26" width="5" height="5.4" rx="1.2" fill="#FBBF24"/>
+                <rect x="24" y="25.4" width="16" height="6.6" rx="1.4" fill="url(#favChip)"/>
+                <rect x="27" y="27.6" width="4" height="1.6" rx="0.8" fill="#94A3B8" opacity="0.85"/>
+              </g>
+
+              <circle cx="50" cy="50" r="8" fill="#10B981" stroke="#ffffff" stroke-width="2"/>
+              <path d="M46.4 50.1l2.3 2.3 4.4-4.6" fill="none" stroke="#ffffff"
+                    stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <path d="M53 6l1.1 3.1L57.2 10l-2.9 1-1.1 3-1.1-3-2.9-1 2.9-1z"
+                    fill="#FDE68A" opacity="0.95"/>
+            </svg>
         </div>
-    </div>
 
-    <!-- ═══════════ МОДАЛЬНОЕ ОКНО ФОТО ═══════════ -->
-    <div class="photo-modal" id="photoModal">
-        <div class="photo-modal-backdrop" id="photoBackdrop"></div>
-        <div class="photo-modal-content">
-            <div class="photo-modal-header">
-                <h3 class="photo-modal-title" id="photoTitle">Фотография</h3>
-                <div class="photo-modal-actions">
-                    <a href="#" target="_blank" class="photo-modal-btn" id="photoOpenNew" title="Открыть в новой вкладке">
-                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    </a>
-                    <a href="#" download class="photo-modal-btn" id="photoDownload" title="Скачать">
-                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </a>
-                    <button class="photo-modal-btn photo-modal-close" id="photoClose" title="Закрыть" aria-label="Закрыть">
-                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </button>
-                </div>
-            </div>
-            <div class="photo-modal-body" id="photoBody">
-                <button class="photo-modal-nav prev" id="photoPrev" title="Предыдущее" aria-label="Предыдущее фото">
-                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <button class="photo-modal-nav next" id="photoNext" title="Следующее" aria-label="Следующее фото">
-                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-                <div class="photo-modal-counter" id="photoCounter">1 / 2</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════ МОДАЛЬНОЕ ОКНО ВИДЕО ═══════════ -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-modal-backdrop" id="videoBackdrop"></div>
-        <div class="video-modal-content">
-            <div class="video-modal-header">
-                <h3 class="video-modal-title" id="videoTitle">Видео</h3>
-                <button class="video-modal-btn" id="videoClose" title="Закрыть" aria-label="Закрыть">
-                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <div class="video-modal-body" id="videoBody"></div>
-        </div>
-    </div>
-
-    <!-- ═══════════ ОСНОВНЫЕ СКРИПТЫ ═══════════ -->
-    <script>
-        // ── Переключение темы ──
-        (function() {
-            const html = document.documentElement;
-            const toggle = document.getElementById('themeToggle');
-            const icon = document.getElementById('themeIcon');
-            if (!toggle || !icon) return;
-
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            setTheme(savedTheme);
-
-            toggle.addEventListener('click', function() {
-                const current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                const next = current === 'dark' ? 'light' : 'dark';
-                setTheme(next);
-                localStorage.setItem('theme', next);
-            });
-
-            function setTheme(theme) {
-                if (theme === 'dark') {
-                    html.setAttribute('data-theme', 'dark');
-                    icon.textContent = '☀️';
-                    toggle.title = 'Переключить на светлую тему';
-                } else {
-                    html.removeAttribute('data-theme');
-                    icon.textContent = '🌙';
-                    toggle.title = 'Переключить на тёмную тему';
-                }
-            }
-        })();
-
-        // ── Переключение табов ──
-        (function() {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanels = document.querySelectorAll('.tab-panel');
-
-            function activateTab(target) {
-                tabButtons.forEach(b => {
-                    const isActive = b.dataset.tab === target;
-                    b.classList.toggle('active', isActive);
-                    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
-                });
-                tabPanels.forEach(p => {
-                    p.classList.toggle('active', p.dataset.panel === target);
-                });
-
-                if (target === 'models' && window.__vr3dInit) {
-                    setTimeout(() => window.__vr3dInit(), 60);
-                }
-            }
-
-            tabButtons.forEach(btn => {
-                btn.addEventListener('click', () => activateTab(btn.dataset.tab));
-            });
-        })();
-
-        // ── Модальное окно для чертежей ──
-        (function() {
-            const modal = document.getElementById('pdfModal');
-            const backdrop = document.getElementById('pdfBackdrop');
-            const closeBtn = document.getElementById('pdfClose');
-            const titleEl = document.getElementById('pdfTitle');
-            const frameEl = document.getElementById('pdfFrame');
-            const openNewEl = document.getElementById('pdfOpenNew');
-            const downloadEl = document.getElementById('pdfDownload');
-            const cards = document.querySelectorAll('.drawing-card');
-
-            if (!modal) return;
-
-            function openPdf(path, title) {
-                titleEl.textContent = title || 'Чертёж';
-                frameEl.src = path;
-                openNewEl.href = path;
-                downloadEl.href = path;
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closePdf() {
-                modal.classList.remove('open');
-                frameEl.src = '';
-                document.body.style.overflow = '';
-            }
-
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    openPdf(card.dataset.pdf, card.dataset.title);
-                });
-            });
-
-            closeBtn.addEventListener('click', closePdf);
-            backdrop.addEventListener('click', closePdf);
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('open')) {
-                    closePdf();
-                }
-            });
-        })();
-
-        // ── Модальное окно для ФОТОГРАФИЙ (как у чертежей) ──
-        (function() {
-            const modal = document.getElementById('photoModal');
-            const backdrop = document.getElementById('photoBackdrop');
-            const closeBtn = document.getElementById('photoClose');
-            const titleEl = document.getElementById('photoTitle');
-            const bodyEl = document.getElementById('photoBody');
-            const openNewEl = document.getElementById('photoOpenNew');
-            const downloadEl = document.getElementById('photoDownload');
-            const prevBtn = document.getElementById('photoPrev');
-            const nextBtn = document.getElementById('photoNext');
-            const counterEl = document.getElementById('photoCounter');
-            const cards = Array.from(document.querySelectorAll('.photo-card'));
-
-            if (!modal || !cards.length) return;
-
-            let currentIndex = 0;
-
-            // SVG-заглушка, если нет реального изображения
-            const placeholderSvg = `
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                    <circle cx="12" cy="13" r="4"/>
-                </svg>
-            `;
-
-            function renderPhoto(index) {
-                const card = cards[index];
-                const src = card.dataset.photo;
-                const title = card.dataset.title || 'Фотография';
-
-                titleEl.textContent = title;
-                openNewEl.href = src;
-                downloadEl.href = src;
-                downloadEl.setAttribute('download', '');
-
-                // Очищаем старые nav/counter (они должны остаться)
-                // Удаляем только контент
-                const oldContent = bodyEl.querySelector('.photo-modal-content-item');
-                if (oldContent) oldContent.remove();
-
-                // Создаём контейнер для содержимого
-                const contentWrap = document.createElement('div');
-                contentWrap.className = 'photo-modal-content-item';
-                contentWrap.style.cssText = 'width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;';
-
-                // Пробуем загрузить реальное изображение
-                const testImg = new Image();
-                testImg.onload = function() {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = title;
-                    contentWrap.appendChild(img);
-                };
-                testImg.onerror = function() {
-                    // Если картинки нет — показываем стилизованную заглушку
-                    const ph = document.createElement('div');
-                    ph.className = 'photo-placeholder-large';
-                    ph.innerHTML = placeholderSvg;
-                    contentWrap.appendChild(ph);
-                };
-                testImg.src = src;
-
-                bodyEl.appendChild(contentWrap);
-
-                // Обновляем счётчик
-                if (counterEl) {
-                    counterEl.textContent = (index + 1) + ' / ' + cards.length;
-                }
-            }
-
-            function openPhoto(index) {
-                currentIndex = index;
-                renderPhoto(currentIndex);
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closePhoto() {
-                modal.classList.remove('open');
-                const contentWrap = bodyEl.querySelector('.photo-modal-content-item');
-                if (contentWrap) contentWrap.remove();
-                document.body.style.overflow = '';
-            }
-
-            function showPrev() {
-                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-                renderPhoto(currentIndex);
-            }
-
-            function showNext() {
-                currentIndex = (currentIndex + 1) % cards.length;
-                renderPhoto(currentIndex);
-            }
-
-            cards.forEach((card, i) => {
-                card.addEventListener('click', () => openPhoto(i));
-            });
-
-            closeBtn.addEventListener('click', closePhoto);
-            backdrop.addEventListener('click', closePhoto);
-            if (prevBtn) prevBtn.addEventListener('click', showPrev);
-            if (nextBtn) nextBtn.addEventListener('click', showNext);
-
-            document.addEventListener('keydown', (e) => {
-                if (!modal.classList.contains('open')) return;
-                if (e.key === 'Escape') closePhoto();
-                if (e.key === 'ArrowLeft') showPrev();
-                if (e.key === 'ArrowRight') showNext();
-            });
-        })();
-
-        // ── Модальное окно для видео ──
-        (function() {
-            const modal = document.getElementById('videoModal');
-            const backdrop = document.getElementById('videoBackdrop');
-            const closeBtn = document.getElementById('videoClose');
-            const titleEl = document.getElementById('videoTitle');
-            const body = document.getElementById('videoBody');
-            const cards = document.querySelectorAll('.video-card');
-
-            if (!modal || !cards.length) return;
-
-            function buildPlayer(src) {
-                return `
-                    <video controls autoplay playsinline>
-                        <source src="${src}" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
-                    </video>
-                `;
-            }
-
-            function openVideo(src, title) {
-                titleEl.textContent = title || 'Видео';
-                body.innerHTML = buildPlayer(src);
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeVideo() {
-                modal.classList.remove('open');
-                body.innerHTML = '';
-                document.body.style.overflow = '';
-            }
-
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    openVideo(card.dataset.video, card.dataset.title);
-                });
-            });
-
-            closeBtn.addEventListener('click', closeVideo);
-            backdrop.addEventListener('click', closeVideo);
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('open')) {
-                    closeVideo();
-                }
-            });
-        })();
-    </script>
-
-    <!-- ═══════════ 3D-ВЬЮЕР (Three.js + .glb) ═══════════ -->
-    <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-      }
-    }
-    </script>
-
-    <script type="module">
-        try {
-            const THREE = await import('three');
-            const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
-            const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
-
-            let viewer = null;
-
-            window.__vr3dInit = function initViewer3d() {
-                const container = document.getElementById('viewer3d');
-                if (!container) return;
-
-                if (viewer) { viewer.resize(); return; }
-
-                const w = container.clientWidth;
-                const h = container.clientHeight;
-                if (w < 50 || h < 50) { setTimeout(window.__vr3dInit, 80); return; }
-
-                container.innerHTML = '';
-
-                const scene = new THREE.Scene();
-
-                const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 500);
-                camera.position.set(9, 7, 12);
-
-                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-                renderer.setSize(w, h);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                renderer.shadowMap.enabled = true;
-                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                renderer.outputColorSpace = THREE.SRGBColorSpace;
-                container.appendChild(renderer.domElement);
-
-                const controls = new OrbitControls(camera, renderer.domElement);
-                controls.enableDamping = true;
-                controls.dampingFactor = 0.07;
-                controls.autoRotate = true;
-                controls.autoRotateSpeed = 1.1;
-                controls.minDistance = 3;
-                controls.maxDistance = 50;
-                controls.maxPolarAngle = Math.PI / 1.9;
-                controls.target.set(0, 0.5, 0);
-
-                scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-
-                const dir1 = new THREE.DirectionalLight(0xffffff, 1.6);
-                dir1.position.set(8, 14, 10);
-                dir1.castShadow = true;
-                dir1.shadow.mapSize.set(2048, 2048);
-                dir1.shadow.camera.left = -15;
-                dir1.shadow.camera.right = 15;
-                dir1.shadow.camera.top = 15;
-                dir1.shadow.camera.bottom = -15;
-                scene.add(dir1);
-
-                const dir2 = new THREE.DirectionalLight(0x00F2FE, 0.7);
-                dir2.position.set(-8, 6, -8);
-                scene.add(dir2);
-
-                const dir3 = new THREE.DirectionalLight(0x4FACFE, 0.5);
-                dir3.position.set(-6, 3, 10);
-                scene.add(dir3);
-
-                const groundGeo = new THREE.PlaneGeometry(60, 60);
-                const groundMat = new THREE.ShadowMaterial({ opacity: 0.15 });
-                const ground = new THREE.Mesh(groundGeo, groundMat);
-                ground.rotation.x = -Math.PI / 2;
-                ground.position.y = -0.01;
-                ground.receiveShadow = true;
-                scene.add(ground);
-
-                const machine = new THREE.Group();
-                scene.add(machine);
-
-                const progressEl = document.createElement('div');
-                progressEl.style.cssText = `
-                    position: absolute; bottom: 60px; left: 50%;
-                    transform: translateX(-50%);
-                    background: rgba(0,0,0,0.7); color: #fff;
-                    padding: 8px 18px; border-radius: 20px;
-                    font-size: 0.8rem; font-weight: 600; z-index: 6;
-                    backdrop-filter: blur(8px);
-                    font-family: 'Segoe UI', sans-serif;
-                    pointer-events: none;
-                `;
-                progressEl.textContent = 'Загрузка модели… 0%';
-                container.appendChild(progressEl);
-
-                const loader = new GLTFLoader();
-                loader.load(
-                    'models/smd-machine.glb',
-                    (gltf) => {
-                        const model = gltf.scene;
-
-                        model.traverse((obj) => {
-                            if (obj.isMesh) {
-                                obj.castShadow = true;
-                                obj.receiveShadow = true;
-                                if (obj.material && obj.material.isMeshStandardMaterial) {
-                                    obj.material.envMapIntensity = 1.0;
-                                }
-                            }
-                        });
-
-                        model.rotation.x = Math.PI;
-                        model.updateMatrixWorld(true);
-
-                        const box = new THREE.Box3().setFromObject(model);
-                        const size = box.getSize(new THREE.Vector3());
-                        const center = box.getCenter(new THREE.Vector3());
-                        const maxDim = Math.max(size.x, size.y, size.z);
-                        const targetSize = 8;
-                        const scale = targetSize / maxDim;
-                        model.scale.setScalar(scale);
-                        model.position.sub(center.multiplyScalar(scale));
-                        model.position.y += (size.y * scale) / 2 - 0.01;
-
-                        machine.add(model);
-
-                        const newBox = new THREE.Box3().setFromObject(model);
-                        const newSize = newBox.getSize(new THREE.Vector3());
-                        const dist = Math.max(newSize.x, newSize.y, newSize.z) * 1.8;
-                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
-                        controls.target.set(0, newSize.y / 2, 0);
-                        controls.update();
-
-                        progressEl.remove();
-
-                        if (gltf.animations && gltf.animations.length) {
-                            const mixer = new THREE.AnimationMixer(model);
-                            gltf.animations.forEach((clip) => {
-                                mixer.clipAction(clip).play();
-                            });
-                            viewer = viewer || {};
-                            viewer.mixer = mixer;
-                        }
-                    },
-                    (xhr) => {
-                        if (xhr.total) {
-                            const pct = Math.round((xhr.loaded / xhr.total) * 100);
-                            progressEl.textContent = `Загрузка модели… ${pct}%`;
-                        } else {
-                            progressEl.textContent = 'Загрузка модели…';
-                        }
-                    },
-                    (error) => {
-                        console.error('Ошибка загрузки .glb:', error);
-                        progressEl.textContent = '⚠ Не удалось загрузить модель';
-                        progressEl.style.background = 'rgba(220, 38, 38, 0.85)';
-                        setTimeout(() => progressEl.remove(), 3500);
-                    }
-                );
-
-                const btnRotate = document.getElementById('vr3dRotate');
-                const btnReset  = document.getElementById('vr3dReset');
-
-                if (btnRotate) {
-                    btnRotate.addEventListener('click', () => {
-                        controls.autoRotate = !controls.autoRotate;
-                        btnRotate.classList.toggle('active', controls.autoRotate);
-                    });
-                }
-                if (btnReset) {
-                    btnReset.addEventListener('click', () => {
-                        const box = new THREE.Box3().setFromObject(machine);
-                        const size = box.getSize(new THREE.Vector3());
-                        const dist = Math.max(size.x, size.y, size.z) * 1.8;
-                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
-                        controls.target.set(0, size.y / 2, 0);
-                        controls.update();
-                    });
-                }
-
-                function resize() {
-                    const w2 = container.clientWidth;
-                    const h2 = container.clientHeight;
-                    if (w2 < 10 || h2 < 10) return;
-                    camera.aspect = w2 / h2;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(w2, h2);
-                }
-                window.addEventListener('resize', resize);
-
-                function animate() {
-                    requestAnimationFrame(animate);
-
-                    if (viewer && viewer.mixer) {
-                        viewer.mixer.update(0.016);
-                    }
-
-                    controls.update();
-                    renderer.render(scene, camera);
-                }
-                animate();
-
-                viewer = viewer || {};
-                viewer.resize = resize;
-            };
-
-            if (document.querySelector('.tab-panel.active[data-panel="models"]')) {
-                window.__vr3dInit();
-            }
-        } catch (err) {
-            console.warn('Three.js не загрузился, используется SVG-заглушка:', err);
-        }
-    </script>
-
-</body>
-</html>
+        <p class="footer-main">© 
