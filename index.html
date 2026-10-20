@@ -2265,4 +2265,548 @@
             </svg>
         </div>
 
-        <p class="footer-main">© 
+        <p class="footer-main">© 2026 ООО «СтанкоПром». Проект создан при поддержке <span class="footer-highlight">Фонда содействия инновациям</span>.</p>
+        <p class="footer-note"></p>
+    </footer>
+
+    <!-- ═══════════ МОДАЛЬНОЕ ОКНО PDF ═══════════ -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-backdrop" id="pdfBackdrop"></div>
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 class="pdf-modal-title" id="pdfTitle">Название чертежа</h3>
+                <div class="pdf-modal-actions">
+                    <a href="#" target="_blank" class="pdf-modal-btn" id="pdfOpenNew" title="Открыть в новой вкладке">
+                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <a href="#" download class="pdf-modal-btn" id="pdfDownload" title="Скачать">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </a>
+                    <button class="pdf-modal-btn pdf-modal-close" id="pdfClose" title="Закрыть" aria-label="Закрыть">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <iframe class="pdf-modal-frame" id="pdfFrame" title="Просмотр чертежа"></iframe>
+        </div>
+    </div>
+
+    <!-- ═══════════ МОДАЛЬНОЕ ОКНО ФОТО ═══════════ -->
+    <div class="photo-modal" id="photoModal">
+        <div class="photo-modal-backdrop" id="photoBackdrop"></div>
+        <div class="photo-modal-content">
+            <div class="photo-modal-header">
+                <h3 class="photo-modal-title" id="photoTitle">Фотография</h3>
+                <div class="photo-modal-actions">
+                    <a href="#" target="_blank" class="photo-modal-btn" id="photoOpenNew" title="Открыть в новой вкладке">
+                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <a href="#" download class="photo-modal-btn" id="photoDownload" title="Скачать">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </a>
+                    <button class="photo-modal-btn photo-modal-close" id="photoClose" title="Закрыть" aria-label="Закрыть">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="photo-modal-body" id="photoBody">
+                <button class="photo-modal-nav prev" id="photoPrev" title="Предыдущее" aria-label="Предыдущее фото">
+                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="photo-modal-nav next" id="photoNext" title="Следующее" aria-label="Следующее фото">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="photo-modal-counter" id="photoCounter">1 / 2</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ МОДАЛЬНОЕ ОКНО ВИДЕО ═══════════ -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-backdrop" id="videoBackdrop"></div>
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 class="video-modal-title" id="videoTitle">Видео</h3>
+                <button class="video-modal-btn" id="videoClose" title="Закрыть" aria-label="Закрыть">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="video-modal-body" id="videoBody"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════ ОСНОВНЫЕ СКРИПТЫ ═══════════ -->
+    <script>
+        // ── Переключение темы ──
+        (function() {
+            const html = document.documentElement;
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            if (!toggle || !icon) return;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            toggle.addEventListener('click', function() {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                setTheme(next);
+                localStorage.setItem('theme', next);
+            });
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    icon.textContent = '☀️';
+                    toggle.title = 'Переключить на светлую тему';
+                } else {
+                    html.removeAttribute('data-theme');
+                    icon.textContent = '🌙';
+                    toggle.title = 'Переключить на тёмную тему';
+                }
+            }
+        })();
+
+        // ── Переключение табов ──
+        (function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            function activateTab(target) {
+                tabButtons.forEach(b => {
+                    const isActive = b.dataset.tab === target;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+                tabPanels.forEach(p => {
+                    p.classList.toggle('active', p.dataset.panel === target);
+                });
+
+                if (target === 'models' && window.__vr3dInit) {
+                    setTimeout(() => window.__vr3dInit(), 60);
+                }
+            }
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+            });
+        })();
+
+        // ── Модальное окно для чертежей ──
+        (function() {
+            const modal = document.getElementById('pdfModal');
+            const backdrop = document.getElementById('pdfBackdrop');
+            const closeBtn = document.getElementById('pdfClose');
+            const titleEl = document.getElementById('pdfTitle');
+            const frameEl = document.getElementById('pdfFrame');
+            const openNewEl = document.getElementById('pdfOpenNew');
+            const downloadEl = document.getElementById('pdfDownload');
+            const cards = document.querySelectorAll('.drawing-card');
+
+            if (!modal) return;
+
+            function openPdf(path, title) {
+                titleEl.textContent = title || 'Чертёж';
+                frameEl.src = path;
+                openNewEl.href = path;
+                downloadEl.href = path;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePdf() {
+                modal.classList.remove('open');
+                frameEl.src = '';
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    openPdf(card.dataset.pdf, card.dataset.title);
+                });
+            });
+
+            closeBtn.addEventListener('click', closePdf);
+            backdrop.addEventListener('click', closePdf);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closePdf();
+                }
+            });
+        })();
+
+        // ── Модальное окно для ФОТОГРАФИЙ ──
+        (function() {
+            const modal = document.getElementById('photoModal');
+            const backdrop = document.getElementById('photoBackdrop');
+            const closeBtn = document.getElementById('photoClose');
+            const titleEl = document.getElementById('photoTitle');
+            const bodyEl = document.getElementById('photoBody');
+            const openNewEl = document.getElementById('photoOpenNew');
+            const downloadEl = document.getElementById('photoDownload');
+            const prevBtn = document.getElementById('photoPrev');
+            const nextBtn = document.getElementById('photoNext');
+            const counterEl = document.getElementById('photoCounter');
+            const cards = Array.from(document.querySelectorAll('.photo-card'));
+
+            if (!modal || !cards.length) return;
+
+            let currentIndex = 0;
+
+            const placeholderSvg = `
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+            `;
+
+            function renderPhoto(index) {
+                const card = cards[index];
+                const src = card.dataset.photo;
+                const title = card.dataset.title || 'Фотография';
+
+                titleEl.textContent = title;
+                openNewEl.href = src;
+                downloadEl.href = src;
+                downloadEl.setAttribute('download', '');
+
+                const oldContent = bodyEl.querySelector('.photo-modal-content-item');
+                if (oldContent) oldContent.remove();
+
+                const contentWrap = document.createElement('div');
+                contentWrap.className = 'photo-modal-content-item';
+                contentWrap.style.cssText = 'width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;';
+
+                const testImg = new Image();
+                testImg.onload = function() {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = title;
+                    contentWrap.appendChild(img);
+                };
+                testImg.onerror = function() {
+                    const ph = document.createElement('div');
+                    ph.className = 'photo-placeholder-large';
+                    ph.innerHTML = placeholderSvg;
+                    contentWrap.appendChild(ph);
+                };
+                testImg.src = src;
+
+                bodyEl.appendChild(contentWrap);
+
+                if (counterEl) {
+                    counterEl.textContent = (index + 1) + ' / ' + cards.length;
+                }
+            }
+
+            function openPhoto(index) {
+                currentIndex = index;
+                renderPhoto(currentIndex);
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePhoto() {
+                modal.classList.remove('open');
+                const contentWrap = bodyEl.querySelector('.photo-modal-content-item');
+                if (contentWrap) contentWrap.remove();
+                document.body.style.overflow = '';
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                renderPhoto(currentIndex);
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % cards.length;
+                renderPhoto(currentIndex);
+            }
+
+            cards.forEach((card, i) => {
+                card.addEventListener('click', () => openPhoto(i));
+            });
+
+            closeBtn.addEventListener('click', closePhoto);
+            backdrop.addEventListener('click', closePhoto);
+            if (prevBtn) prevBtn.addEventListener('click', showPrev);
+            if (nextBtn) nextBtn.addEventListener('click', showNext);
+
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('open')) return;
+                if (e.key === 'Escape') closePhoto();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+        })();
+
+        // ── Модальное окно для видео ──
+        (function() {
+            const modal = document.getElementById('videoModal');
+            const backdrop = document.getElementById('videoBackdrop');
+            const closeBtn = document.getElementById('videoClose');
+            const titleEl = document.getElementById('videoTitle');
+            const body = document.getElementById('videoBody');
+            const cards = document.querySelectorAll('.video-card');
+
+            if (!modal || !cards.length) return;
+
+            function buildPlayer(src) {
+                return `
+                    <video controls autoplay playsinline>
+                        <source src="${src}" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                `;
+            }
+
+            function openVideo(src, title) {
+                titleEl.textContent = title || 'Видео';
+                body.innerHTML = buildPlayer(src);
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeVideo() {
+                modal.classList.remove('open');
+                body.innerHTML = '';
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    openVideo(card.dataset.video, card.dataset.title);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeVideo);
+            backdrop.addEventListener('click', closeVideo);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeVideo();
+                }
+            });
+        })();
+    </script>
+
+    <!-- ═══════════ 3D-ВЬЮЕР (Three.js + .glb) ═══════════ -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+
+    <script type="module">
+        try {
+            const THREE = await import('three');
+            const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+            const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+
+            let viewer = null;
+
+            window.__vr3dInit = function initViewer3d() {
+                const container = document.getElementById('viewer3d');
+                if (!container) return;
+
+                if (viewer) { viewer.resize(); return; }
+
+                const w = container.clientWidth;
+                const h = container.clientHeight;
+                if (w < 50 || h < 50) { setTimeout(window.__vr3dInit, 80); return; }
+
+                container.innerHTML = '';
+
+                const scene = new THREE.Scene();
+
+                const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 500);
+                camera.position.set(9, 7, 12);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(w, h);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                renderer.outputColorSpace = THREE.SRGBColorSpace;
+                container.appendChild(renderer.domElement);
+
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.07;
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 1.1;
+                controls.minDistance = 3;
+                controls.maxDistance = 50;
+                controls.maxPolarAngle = Math.PI / 1.9;
+                controls.target.set(0, 0.5, 0);
+
+                scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+
+                const dir1 = new THREE.DirectionalLight(0xffffff, 1.6);
+                dir1.position.set(8, 14, 10);
+                dir1.castShadow = true;
+                dir1.shadow.mapSize.set(2048, 2048);
+                dir1.shadow.camera.left = -15;
+                dir1.shadow.camera.right = 15;
+                dir1.shadow.camera.top = 15;
+                dir1.shadow.camera.bottom = -15;
+                scene.add(dir1);
+
+                const dir2 = new THREE.DirectionalLight(0x00F2FE, 0.7);
+                dir2.position.set(-8, 6, -8);
+                scene.add(dir2);
+
+                const dir3 = new THREE.DirectionalLight(0x4FACFE, 0.5);
+                dir3.position.set(-6, 3, 10);
+                scene.add(dir3);
+
+                const groundGeo = new THREE.PlaneGeometry(60, 60);
+                const groundMat = new THREE.ShadowMaterial({ opacity: 0.15 });
+                const ground = new THREE.Mesh(groundGeo, groundMat);
+                ground.rotation.x = -Math.PI / 2;
+                ground.position.y = -0.01;
+                ground.receiveShadow = true;
+                scene.add(ground);
+
+                const machine = new THREE.Group();
+                scene.add(machine);
+
+                const progressEl = document.createElement('div');
+                progressEl.style.cssText = `
+                    position: absolute; bottom: 60px; left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.7); color: #fff;
+                    padding: 8px 18px; border-radius: 20px;
+                    font-size: 0.8rem; font-weight: 600; z-index: 6;
+                    backdrop-filter: blur(8px);
+                    font-family: 'Segoe UI', sans-serif;
+                    pointer-events: none;
+                `;
+                progressEl.textContent = 'Загрузка модели… 0%';
+                container.appendChild(progressEl);
+
+                const loader = new GLTFLoader();
+                loader.load(
+                    'models/smd-machine.glb',
+                    (gltf) => {
+                        const model = gltf.scene;
+
+                        model.traverse((obj) => {
+                            if (obj.isMesh) {
+                                obj.castShadow = true;
+                                obj.receiveShadow = true;
+                                if (obj.material && obj.material.isMeshStandardMaterial) {
+                                    obj.material.envMapIntensity = 1.0;
+                                }
+                            }
+                        });
+
+                        model.rotation.x = Math.PI;
+                        model.updateMatrixWorld(true);
+
+                        const box = new THREE.Box3().setFromObject(model);
+                        const size = box.getSize(new THREE.Vector3());
+                        const center = box.getCenter(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const targetSize = 8;
+                        const scale = targetSize / maxDim;
+                        model.scale.setScalar(scale);
+                        model.position.sub(center.multiplyScalar(scale));
+                        model.position.y += (size.y * scale) / 2 - 0.01;
+
+                        machine.add(model);
+
+                        const newBox = new THREE.Box3().setFromObject(model);
+                        const newSize = newBox.getSize(new THREE.Vector3());
+                        const dist = Math.max(newSize.x, newSize.y, newSize.z) * 1.8;
+                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
+                        controls.target.set(0, newSize.y / 2, 0);
+                        controls.update();
+
+                        progressEl.remove();
+
+                        if (gltf.animations && gltf.animations.length) {
+                            const mixer = new THREE.AnimationMixer(model);
+                            gltf.animations.forEach((clip) => {
+                                mixer.clipAction(clip).play();
+                            });
+                            viewer = viewer || {};
+                            viewer.mixer = mixer;
+                        }
+                    },
+                    (xhr) => {
+                        if (xhr.total) {
+                            const pct = Math.round((xhr.loaded / xhr.total) * 100);
+                            progressEl.textContent = `Загрузка модели… ${pct}%`;
+                        } else {
+                            progressEl.textContent = 'Загрузка модели…';
+                        }
+                    },
+                    (error) => {
+                        console.error('Ошибка загрузки .glb:', error);
+                        progressEl.textContent = '⚠ Не удалось загрузить модель';
+                        progressEl.style.background = 'rgba(220, 38, 38, 0.85)';
+                        setTimeout(() => progressEl.remove(), 3500);
+                    }
+                );
+
+                const btnRotate = document.getElementById('vr3dRotate');
+                const btnReset  = document.getElementById('vr3dReset');
+
+                if (btnRotate) {
+                    btnRotate.addEventListener('click', () => {
+                        controls.autoRotate = !controls.autoRotate;
+                        btnRotate.classList.toggle('active', controls.autoRotate);
+                    });
+                }
+                if (btnReset) {
+                    btnReset.addEventListener('click', () => {
+                        const box = new THREE.Box3().setFromObject(machine);
+                        const size = box.getSize(new THREE.Vector3());
+                        const dist = Math.max(size.x, size.y, size.z) * 1.8;
+                        camera.position.set(dist * 0.6, dist * 0.5, dist * 0.8);
+                        controls.target.set(0, size.y / 2, 0);
+                        controls.update();
+                    });
+                }
+
+                function resize() {
+                    const w2 = container.clientWidth;
+                    const h2 = container.clientHeight;
+                    if (w2 < 10 || h2 < 10) return;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                }
+                window.addEventListener('resize', resize);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    if (viewer && viewer.mixer) {
+                        viewer.mixer.update(0.016);
+                    }
+
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                viewer = viewer || {};
+                viewer.resize = resize;
+            };
+
+            if (document.querySelector('.tab-panel.active[data-panel="models"]')) {
+                window.__vr3dInit();
+            }
+        } catch (err) {
+            console.warn('Three.js не загрузился, используется SVG-заглушка:', err);
+        }
+    </script>
+
+</body>
+</html>
