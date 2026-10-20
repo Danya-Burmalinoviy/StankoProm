@@ -2634,17 +2634,41 @@
                 renderer.outputColorSpace = THREE.SRGBColorSpace;
                 container.appendChild(renderer.domElement);
 
+                // ═══ Нормализация колеса: одинаково плавно для мыши и трекпада ═══
+                // Разбиваем крупные deltaY (трекпад, «быстрое» колесо) на мелкие шаги,
+                // чтобы OrbitControls обрабатывал каждый как отдельный микротик.
+                renderer.domElement.addEventListener('wheel', (e) => {
+                    const threshold = 50;
+                    if (Math.abs(e.deltaY) <= threshold) return; // мелкие дельты пусть идут нативно
+                    e.stopImmediatePropagation();
+                    const parts = Math.ceil(Math.abs(e.deltaY) / 40);
+                    const step = e.deltaY / parts;
+                    for (let i = 0; i < parts; i++) {
+                        renderer.domElement.dispatchEvent(new WheelEvent('wheel', {
+                            deltaY: step,
+                            deltaMode: e.deltaMode,
+                            clientX: e.clientX,
+                            clientY: e.clientY,
+                            bubbles: true,
+                            cancelable: true
+                        }));
+                    }
+                    e.preventDefault();
+                }, { capture: true, passive: false });
+
                 const controls = new OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
-                controls.dampingFactor = 0.07;
+                controls.dampingFactor = 0.12;    // больше инерции — мягкая остановка
                 controls.autoRotate = true;
                 controls.autoRotateSpeed = 1.1;
-                controls.zoomSpeed = 0.4;        // плавнее (по умолчанию было 1.0)
-                controls.zoomToCursor = true;    // зум к курсору — интуитивнее
-                controls.minDistance = 5;        // не подъезжать вплотную
-                controls.maxDistance = 35;       // общий диапазон
+                controls.zoomSpeed = 0.15;         // мелкий шаг зума — много промежуточных положений
+                controls.rotateSpeed = 0.6;        // плавнее вращение
+                controls.panSpeed = 0.6;           // плавнее панорама
+                controls.minDistance = 5;
+                controls.maxDistance = 35;
                 controls.maxPolarAngle = Math.PI / 1.9;
                 controls.target.set(0, 0.5, 0);
+                // controls.zoomToCursor = true;   // специально отключено — даёт «прыжки» к курсору
 
                 scene.add(new THREE.AmbientLight(0xffffff, 0.7));
 
